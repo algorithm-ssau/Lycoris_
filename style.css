@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'Gilroy-Medium';
+    src: url(fonts/Gilroy/Gilroy-Medium.ttf);
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy-Regular';
+    src: url(fonts/Gilroy/Gilroy-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    font-family: 'Gilroy-Medium';
+    text-decoration: none;
+    size: 16px;
+    color: black;
+}
+
+/*Шапка*/
+.nav_list {
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+}
+
+.nav_list div{
+    display: flex;
+}
+
+.nav_list a {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    outline: 1px solid black;
+    width: 180px;
+    height: 60px;
+}
+
+div .nav_elem:nth-child(odd) {
+    margin-right: 1px;
+}
+
+
+
+
