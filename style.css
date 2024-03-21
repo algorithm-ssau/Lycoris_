@@ -12,9 +12,33 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Gilroy';
+    src: url(fonts/Gilroy/stylesheet.css);
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Gilroy-Light';
+    src: url(fonts/Gilroy/Gilroy-Light.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy-Bold';
+    src: url(fonts/Gilroy/Gilroy-Bold.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 
 body {
     border: 1px solid black;
+
     margin: 0;
     padding: 0;
 }
@@ -31,30 +55,233 @@ a {
     color: black;
 }
 
+h3 {
+    font-family: 'Gilroy-Medium';
+    font-size: 14px;
+    font-weight: 75;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+h2 {
+    font-family: 'Gilroy-Medium';
+    font-weight: 550;
+    font-size: 38px;
+    margin: 0;
+}
+
+p {
+    font-family: 'Gilroy-Regular';
+    font-size: 16px;
+    margin: 0;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 175px;
+    height: 56px;
+    font-family: 'Gilroy-Medium';
+    font-size: 16px;
+    font-weight: 90;
+    text-transform: uppercase;
+    border: 1px solid black;
+}
+
 /*Шапка*/
 .nav_list {
-    display: flex;
+    display: grid;
+    grid-template-columns: 0.25fr auto 0.25fr;
     margin: 0;
-    justify-content: space-between;
 }
 
 .nav_list div{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .nav_list a {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     outline: 1px solid black;
-    width: 180px;
-    height: 60px;
+    width: 100%;
+    height: 4vw;
+
+    /* Пока оставить как фичу */
+    transition: background-color 0.3s;
+}
+
+.nav_list a:hover {
+    background-color: black;
+    color: white;
 }
 
 div .nav_elem:nth-child(odd) {
     margin-right: 1px;
 }
 
+/*Welcome секция*/
+.welcome, .about_us {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 50vw;
+    grid-template-areas: "title goods"
+                         "something goods";
+}
 
+
+.welcome_title {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-area: title;
+    width: auto;
+    padding: 80px;
+    border: 1px solid black;
+    border-left: none;
+    border-right: none;
+    row-gap: 24px;
+
+}
+
+.title {
+    grid-column: span 2;
+    width: auto;
+    height: 20.95vw;
+    border-bottom: 1px solid black;
+    
+}
+
+.title h1 {
+    font-size: 67px;
+    font-family: 'Gilroy';
+    font-weight: 600;
+    margin: 0;
+}
+
+.title p {
+    margin-top: 32px;
+    font-size: 18px;
+    font-family: 'Gilroy';
+    width: auto;
+}
+
+.title_hero {
+    border-right: 1px solid black;
+    padding-right: 24px;
+}
+
+.title_hero_img {
+    width: 100%;
+}
+
+.slogan {
+    margin-top: auto;
+    margin-bottom: 0;
+    padding-left: 24px;
+    width: auto;
+    font-family: 'Gilroy';
+    font-weight: 400;
+    font-size: 14px;
+}
+
+
+.welcome_goods_types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-area: goods;
+    border: 1px solid black;
+    border-bottom: none;
+    border-right: none;
+}
+
+
+.welcome_goods_types img {
+    width: 100%;
+    height: 100%;
+}
+
+.welcome_goods_types > div {
+    border-bottom: 1px solid black;
+}
+
+
+.welcome_goods_types div:nth-child(odd) {
+    border-right: 1px solid black;
+}
+
+
+.welcome_something {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: something;
+    border-bottom: 1px solid black;
+    font-family: 'Gilroy-Medium';
+    font-size: 65px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gilroy-Light';
+    font-weight: 500;
+    font-size: 38px;
+}
+
+.card a {
+    
+    font-size: 16px;
+    font-family: 'Gilroy';
+    font-weight: 600;
+}
+
+.card img {
+    width: 24px;
+    height: 24px;
+    vertical-align:middle;
+}
+
+/*Секция ABOUT US*/
+
+.about_us {
+    width: auto;
+    height: 500px;
+}
+
+.about_us_title {
+    height: 200px;
+    font-family: 'Gilroy';
+    font-weight: 600;
+    font-size: 50px;
+    margin-top: 80px;
+    margin-left: 80px;
+}
+
+.about_us_description {
+    height: 100%;
+    border-left: 1px solid black;
+    padding-top: 80px;
+    padding-left: 80px;
+}
+
+.about_us_description h2 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+.about_us_description a {
+    margin-top: 64px;
+    transition: background-color 0.3s;
+}
+
+.about_us_description a:hover {
+    background-color: black;
+    color: white;
+}
 
 
