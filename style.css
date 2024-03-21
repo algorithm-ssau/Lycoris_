@@ -250,11 +250,11 @@ div .nav_elem:nth-child(odd) {
 
 .about_us {
     width: auto;
-    height: 500px;
+    height: 520px;
+    
 }
 
 .about_us_title {
-    height: 200px;
     font-family: 'Gilroy';
     font-weight: 600;
     font-size: 50px;
@@ -263,7 +263,7 @@ div .nav_elem:nth-child(odd) {
 }
 
 .about_us_description {
-    height: 100%;
+    height: auto;
     border-left: 1px solid black;
     padding-top: 80px;
     padding-left: 80px;
@@ -280,7 +280,7 @@ div .nav_elem:nth-child(odd) {
 }
 
 .about_us_description a {
-    margin-top: 64px;
+    margin-top: 3vw;
     transition: background-color 0.3s;
 }
 
