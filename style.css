@@ -67,7 +67,7 @@ h2 {
     font-family: 'Gilroy-Medium';
     font-weight: 550;
     font-size: 38px;
-    margin: 0;
+    
 }
 
 p {
@@ -272,6 +272,11 @@ div .nav_elem:nth-child(odd) {
 .about_us_description h2 {
     margin-top: 24px;
     margin-bottom: 16px;
+}
+
+.about_us_description p {
+    margin-right: 80px;
+    line-height: 140%;
 }
 
 .about_us_description a {
