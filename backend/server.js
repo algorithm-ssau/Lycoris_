@@ -14,10 +14,7 @@ app.use(flowerRoutes);
 app.use(orderRoutes);
 app.use(userRoutes);
 
-mongoose
-  .connect(URL)
-  .then((res) => console.log('Connected to MongoDB'))
-  .catch((err) => console.log(`DB connection error: ${err}`));
+let db;
 
 app.listen(PORT, (err) => {
   err ? console.log(err) : console.log(`listening port ${PORT}`);
