@@ -1,3 +1,4 @@
+const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -21,6 +22,11 @@ const flowerSchema = new Schema({
     storage_count: {
         type: Number,
         required: true
+    },
+    image: {
+        // The logic behind the image processing is up to you. 
+        // I think you should store it in binary form and then unpack it as you see fit
+        type: Object
     }
 });
 
