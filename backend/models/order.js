@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const orderSchema = new Schema({
     user: {
         type: ObjectId,
+        ref: 'User',
         required: true
     },
     address: {
