@@ -78,10 +78,6 @@ def profile(name):
         abort(401)
     return f"Пользователь {name}"
 
-@app.errorhandler(401)
-def pageNotAuthorized(error):
-    return render_template('page401.html', title="Ошибка 401")
-
 @app.route('/users', methods=['GET'])
 def get_users():
     users = mongo.db.users.find()
@@ -92,4 +88,3 @@ def get_users():
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
-
