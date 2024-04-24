@@ -77,6 +77,23 @@ h2 {
     
 }
 
+h5 {
+    font-family: 'Gilroy-Regular';
+    font-size: 21px;
+    margin: 0;
+    color: gray;
+    margin-bottom: 1em;
+}
+
+h6 {
+    font-family: 'Gilroy-Regular';
+    font-size: 14px;
+    margin: 0;
+    color: gray;
+    margin-bottom: 0.4em;
+}
+
+
 p {
     font-family: 'Gilroy-Regular';
     font-size: 16px;
@@ -117,6 +134,7 @@ button {
     grid-template-columns: 0.25fr auto 0.25fr;
     margin: 0;
 }
+
 
 .nav_list div{
     display: grid;
@@ -321,8 +339,7 @@ h4 {
     grid-template-rows: auto;
 }
 
-.advantages_list p {
-    
+.advantages_list p, .email_block p {
     margin-top: 16px;
     line-height: 140%;
 }
@@ -457,10 +474,12 @@ input {
     grid-template-columns: 1fr 1fr;
 }
 
-.contact_links img {
+.contact_links > img {
     grid-column: span 2;
     width: 100%;
     height: 100%;
+    border-bottom: 1px solid black;
+    
 }
 
 .follow_title {
@@ -468,6 +487,8 @@ input {
     margin: 0;
     justify-content: center;
     align-items: center;
+    border-right: 1px solid black;
+    height: auto;
     
 }
 
@@ -476,8 +497,7 @@ input {
     justify-content: space-between;
     align-items: center;
     padding-left: 56px;
-    padding-right: 56px;
-    border-left: 1px solid black;
+    padding-right: 56px;  
     height: auto;
 }
 
@@ -485,6 +505,108 @@ input {
     width: 24px;
     height: 24px;
 }
+
+
+/*Секция footer*/
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-top: 1px solid black;
+}
+
+.footer_container {
+    border-left: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+.footer_container li {
+    font-family: 'Gilroy-Medium';
+    font-size: 16px;
+    margin-bottom: 2em;
+}
+
+.footer_container:first-child {
+    border-left: none;
+}
+
+.email_block p, .footer_container ul {
+    margin-top: 0;
+}
+
+.footer_container input,  .footer_container button{
+    margin: 0;
+    margin-top: 1.2em;
+    width: auto;
+}
+
+
+.footer_container .follow_links {
+    padding: 0;
+}
+
+
+
+
+
+
+
+
+
+
+/*ДЛЯ СТРАНИЦЫ ПОКУПКИ ЦВЕТОВ*/
+.shop_items {
+    border-top: 1px solid black;
+    
+    display: grid;
+    /*grid-template-columns: 1fr 1fr 1fr 1fr;*/
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-flow: dense;
+    margin-top: 0;
+}
+
+
+
+.flower_item {
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flower_item:last-child {
+    
+}
+
+.flower_item:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+    
+}
+
+
+.flower_item img {
+    width: 80%;
+    padding-top: 1.5em;
+}
+
+.flower_item .item_title {
+    font-family: 'Gilroy-Medium';
+    font-size: 16px;
+    padding-top: 0.4em;
+}
+
+.flower_item .price_title {
+    font-family: 'Gilroy-Medium';
+    font-size: 14px;
+    color: grey;
+    padding-top: 0.2em;
+    padding-bottom: 1.5em;
+}
+
 
 
 
