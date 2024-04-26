@@ -47,4 +47,4 @@ export const SectionWelcome = () => {
     );
 }
 
-export default SectionWelcome;
+// export default SectionWelcome;

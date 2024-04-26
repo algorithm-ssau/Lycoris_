@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../styles/style.css';
-import FlowerItem from '../FlowerItem';
+import { FlowerItem } from '../FlowerItem';
 
-const ShopItems = () => {
+export const ShopItems = () => {
     return (
         <ul class="shop_items">
             <FlowerItem />
@@ -10,11 +10,11 @@ const ShopItems = () => {
             <FlowerItem />
             <FlowerItem />
             <FlowerItem />
-            <FlowerItem/>
-            <FlowerItem/>
+            <FlowerItem />
+            <FlowerItem />
 
         </ul>
     );
 }
 
-export default ShopItems;
+// export default ShopItems;

@@ -32,4 +32,4 @@ export const SectionAdvantages = () => {
     );
 }
 
-export default SectionAdvantages;
+// export default SectionAdvantages;

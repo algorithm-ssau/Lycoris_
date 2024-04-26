@@ -47,4 +47,4 @@ export const SectionContacts = () => {
     );
 }
 
-export default SectionContacts;
+// export default SectionContacts;

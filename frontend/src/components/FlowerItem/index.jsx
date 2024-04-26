@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/style.css';
 
 // TODO: Add args to this and etc
-const FlowerItem = () => {
+export const FlowerItem = () => {
     return (
         // TODO: Need to make connection from mongo db and change "src", "alt", "div"s content
         <li class="flower_item">
@@ -14,4 +14,4 @@ const FlowerItem = () => {
     );
 }
 
-export default FlowerItem;
+// export default FlowerItem;
