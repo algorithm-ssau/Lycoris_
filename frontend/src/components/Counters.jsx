@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import '../styles/style.css';
 
-const Counters = () => {
+export const Counters = () => {
     const [data, setData] = useState(0);
 
     return (
@@ -14,4 +14,4 @@ const Counters = () => {
     );
 }
 
-export default Counters;
+// export default Counters;

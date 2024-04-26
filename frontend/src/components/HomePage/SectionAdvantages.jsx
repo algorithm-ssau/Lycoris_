@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/style.css';
 
 
-const SectionAdvantages = () => {
+export const SectionAdvantages = () => {
     return (
     <section className="advantages">
         <h4>

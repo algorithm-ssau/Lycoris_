@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/style.css';
 
 
-const SectionAU = () => {
+export const SectionAU = () => {
     return (<section className="about_us">
         <h4>
             About us

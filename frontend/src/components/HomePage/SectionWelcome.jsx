@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/style.css';
 
-const SectionWelcome = () => {
+export const SectionWelcome = () => {
     return (
         <section className="welcome">
             <div className="welcome_title">

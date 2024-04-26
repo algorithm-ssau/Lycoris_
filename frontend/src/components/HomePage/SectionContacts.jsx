@@ -2,7 +2,7 @@ import React from 'react';
 import '../../styles/style.css';
 
 
-const SectionContacts = () => {
+export const SectionContacts = () => {
     return (
         <section className="contact_section">
             <div className="contact_info">
@@ -35,11 +35,11 @@ const SectionContacts = () => {
                 <img src="images/shop.jpg" alt="" />
                 <h2 className="follow_title">Follow us</h2>
                 <div className="follow_links">
-                    <img src="images/icons/Instagram.svg" alt="" />
-                    <img src="images/icons/Pinterest.svg" alt="" />
-                    <img src="images/icons/Facebook.svg" alt="" />
-                    <img src="images/icons/Twitter.svg" alt="" />
-                    <img src="images/icons/Telegram.svg" alt="" />
+                    <a href= ""><img src="images/icons/Instagram.svg" alt="" /></a>
+                    <a href= ""><img src="images/icons/Pinterest.svg" alt="" /></a>
+                    <a href= ""><img src="images/icons/Facebook.svg" alt="" /></a>
+                    <a href= ""><img src="images/icons/Twitter.svg" alt="" /></a>
+                    <a href= ""><img src="images/icons/Telegram.svg" alt="" /></a>
                 </div>
 
             </div>

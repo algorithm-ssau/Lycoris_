@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../styles/style.css';
+import '../styles/style.css';
 
-const HeaderNav = () => {
+export const HeaderNav = () => {
     return (
         <header className="header">
             <nav className="header__nav">

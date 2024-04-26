@@ -1,7 +1,7 @@
 // import Reactfrom from 'react';
 import './styles/App.css';
-import { HomePage } from './pages';
-// import Counters from './components/Counters';
+import { HomePage, ShopItemsPage } from './pages';
+import { HeaderNav } from './components';
 
 function App() {
   // const [data, setData] = useState(); 
@@ -25,8 +25,9 @@ function App() {
 
   return (
     <div className="App">
+      <HeaderNav/>
       <HomePage/>
-        
+      <ShopItemsPage/>        
     </div>
   );
 }
