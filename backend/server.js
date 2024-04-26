@@ -13,6 +13,10 @@ app.use(flowerRoutes);
 app.use(orderRoutes);
 app.use(userRoutes);
 
+// app.use(function(req,res,next) {
+//   res.setHeader('Ac')
+// });
+
 mongoose
   .connect(URL, {useNewUrlParser: true, useUnifiedTopology: true})
   .then((res) => console.log('Connected to MongoDB'))
