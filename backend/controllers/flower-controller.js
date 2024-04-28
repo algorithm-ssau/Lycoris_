@@ -1,4 +1,17 @@
 const Flower = require('../models/flower');
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+  destination: (_, __, cb) => {
+    cb(null, 'flowers');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage });
 
 const handleError = (res, error) => {
   res.status(500).json({ error });
@@ -39,6 +52,11 @@ const getFlowers = (req, res) => {
   };
   
   const addFlower = (req, res) => {
+    /*const flowerData = req.body;
+    if (req.file) {
+      flowerData.image = '/flowers' + req.file.originalname;
+    }
+    const flower = new Flower(flowerData);*/
     const flower = new Flower(req.body);
     flower
     .save()
@@ -51,6 +69,11 @@ const getFlowers = (req, res) => {
   };
   
   const updateFlower = (req, res) => {
+    /*const flowerData = req.body;
+    if (req.file) {
+      flowerData.image = '/flowers' + req.file.originalname;
+    }
+    const flower = new Flower(FlowerData);*/
     Flower
     .findByIdAndUpdate(req.params.id, req.body)
     .then((result) => {
@@ -60,6 +83,14 @@ const getFlowers = (req, res) => {
     })
     .catch((err) => handleError(res, err));
   };
+
+  /*not used yet
+  const uploadFlowerImage = (req, res) => {
+    res.json({
+      url:  '/flowers' + req.file.originalname,
+    });
+  }
+  */
   
   module.exports = {
     getFlowers,
@@ -67,4 +98,5 @@ const getFlowers = (req, res) => {
     deleteFlower,
     addFlower,
     updateFlower,
+    //uploadFlowerImage,
   };

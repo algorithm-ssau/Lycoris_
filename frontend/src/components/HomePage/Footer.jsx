@@ -6,7 +6,7 @@ export const Footer = () => {
     return (
         <footer className="footer">
         <div className="email_block footer_container">
-            <p>Remember to offer beautiful flowers from Kyiv LuxeBouquets Valentines Day, Mothers Day, Christmas... Reminds you 7 days before. No spam or sharing your address</p>
+            <p>Remember to offer beautiful flowers from Samara LuxeBouquets Valentines Day, Mothers Day, Christmas... Reminds you 7 days before. No spam or sharing your address</p>
             <input type="text" id="email_input" name="email" placeholder="Your Email"/>
             <button>Remind</button>
         </div>
