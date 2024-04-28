@@ -24,8 +24,6 @@ const flowerSchema = new Schema({
         required: true
     },
     image: {
-        // The logic behind the image processing is up to you. 
-        // I think you should store it in binary form and then unpack it as you see fit
         type: Object
     }
 });
