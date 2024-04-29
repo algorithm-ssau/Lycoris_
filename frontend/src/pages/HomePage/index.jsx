@@ -4,7 +4,7 @@ import {SectionWelcome } from '../../components/HomePage/SectionWelcome';
 import {SectionAU } from '../../components/HomePage/SectionAU';
 import {SectionAdvantages } from '../../components/HomePage/SectionAdvantages';
 import {SectionContacts } from '../../components/HomePage/SectionContacts';
-import { Footer } from '../../components/HomePage/Footer';
+import { Footer } from '../../components/Footer';
 
 
 
