@@ -591,7 +591,7 @@ input {
 
 
 
-.flower_item:first-child {
+.big_item {
     grid-column: span 2;
     grid-row: span 2;
 }
@@ -727,6 +727,65 @@ input {
     margin: 0;
 }
 
+.another_items_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column: span 2;
+    
+}
+
+.another_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    border-left: 1px solid black;
+    position: relative;
+
+    transition: all 0.8s ease;
+}
+
+.another_item:first-child{
+    border-left: none;
+}
+
+
+.another_item:hover {
+    filter: brightness(70%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+
+
+.item_signature {
+    text-align: center;
+    position: absolute;
+    margin-bottom: 4%;
+    justify-content: center;
+    
+}
+
+.item_signature h6 {
+    font-family: 'Gilroy-Medium';
+    color: black;
+    font-size: 16px;
+    
+}
+
+.item_signature .item_signature_price {
+    color: gray;
+}
+
+
+
+
+
+
+
 /*Каруселька*/
 .card_list {
     display: flex;
@@ -735,7 +794,7 @@ input {
     
 }
 
-div.card_list {
+ul.card_list {
     margin-bottom: 24px;
 }
 
@@ -748,7 +807,7 @@ div.card_list {
 }
 
 .purchase_card img {
-    width: 120px;
+    width: 100%;
     height: 120px;
 }
 
@@ -770,11 +829,11 @@ div.card_list {
     padding: 0;
 }
 
-
 .carousel_btn > img {
     width: auto;
     height: auto;
 }
+
 
 
 
