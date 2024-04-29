@@ -564,6 +564,10 @@ input {
     margin-top: 8px;
 }
 
+.about_us_block li {
+    margin-bottom: 8px;
+}
+
 
 
 /*ДЛЯ СТРАНИЦЫ ПОКУПКИ ЦВЕТОВ*/
@@ -587,7 +591,7 @@ input {
 
 
 
-.flower_item:first-child {
+.big_item {
     grid-column: span 2;
     grid-row: span 2;
 }
@@ -610,6 +614,224 @@ input {
     color: grey;
     padding-top: 0.2em;
     padding-bottom: 1.5em;
+}
+
+
+/*Секция оформления покупки*/
+.purchase_content {
+    margin-top: 1px;
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.purchase_content img {
+    width: 100%;
+    height: auto;
+}
+
+.purchase_content > div, .purchase_content > img {
+    outline: 1px solid black;
+}
+
+.purchase_container {
+    padding: 3em 3em 3em 3em;
+    
+}
+
+.enclosure {
+    font-family: 'Gilroy-Medium';
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+.enclosure span {
+    color: gray;
+}
+
+.purchase_content p {
+    margin-bottom: 24px;
+}
+
+.purchase_content h2 {
+    margin: 0;
+    margin-bottom: 24px;
+    font-family: 'Gilroy-Medium';
+    font-size: 38px;
+
+}
+
+.you_may_also {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: span 2;
+    height: 10em;
+}
+
+.you_may_also h2 {
+    margin: 0;
+} 
+
+
+.white_btn {
+    background-color: white;
+    color: black;
+    outline: 1px solid black;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+
+    /* Пока оставить как фичу */
+    transition: background-color 0.3s;
+}
+
+.white_btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.item_counter {
+    height: 44px;
+    width: 44px;
+}
+
+.item_counter:hover {
+    background-color: white;
+    color: black;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.quantity div {
+    margin-left: 30px;
+}
+
+.purch_font {
+    font-family: 'Gilroy-Medium';
+    font-size: 18px;
+}
+
+.purchase_container > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gilroy-Medium';
+    font-size: 16px;
+    width: 100%;
+    margin: 0;
+}
+
+.another_items_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column: span 2;
+    
+}
+
+.another_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    border-left: 1px solid black;
+    position: relative;
+
+    transition: all 0.8s ease;
+}
+
+.another_item:first-child{
+    border-left: none;
+}
+
+
+.another_item:hover {
+    filter: brightness(70%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+
+
+.item_signature {
+    text-align: center;
+    position: absolute;
+    margin-bottom: 4%;
+    justify-content: center;
+    
+}
+
+.item_signature h6 {
+    font-family: 'Gilroy-Medium';
+    color: black;
+    font-size: 16px;
+    
+}
+
+.item_signature .item_signature_price {
+    color: gray;
+}
+
+
+
+
+
+
+
+/*Каруселька*/
+.card_list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+ul.card_list {
+    margin-bottom: 24px;
+}
+
+.purchase_card {
+    margin-right: 1em;
+}
+
+.purchase_card:last-child {
+    margin-right: 0;
+}
+
+.purchase_card img {
+    width: 100%;
+    height: 120px;
+}
+
+.card_item_name{
+    color: black;
+}
+
+.card_list .carousel_btn:last-child {
+    margin-right: 0;
+    margin-left: 16px;
+    background-color: white;
+    padding: 0;
+}
+
+.card_list .carousel_btn:first-child {
+    margin-right: 16px;
+    margin-left: 0;
+    background-color: white;
+    padding: 0;
+}
+
+.carousel_btn > img {
+    width: auto;
+    height: auto;
 }
 
 

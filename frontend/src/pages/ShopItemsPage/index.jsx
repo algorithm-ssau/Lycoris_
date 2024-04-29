@@ -1,6 +1,6 @@
 import React from 'react';
-import {ShopItems} from '../../components/ShopItems';
-import { Footer } from '../../components';
+// import {ShopItems} from '../../components/ShopItems/ShopItems';
+import { Footer, ShopItems } from '../../components';
 
 
 export const ShopItemsPage = () => {

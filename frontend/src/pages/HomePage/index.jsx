@@ -1,10 +1,5 @@
 import React from 'react';
-
-import {SectionWelcome } from '../../components/HomePage/SectionWelcome';
-import {SectionAU } from '../../components/HomePage/SectionAU';
-import {SectionAdvantages } from '../../components/HomePage/SectionAdvantages';
-import {SectionContacts } from '../../components/HomePage/SectionContacts';
-import { Footer } from '../../components/Footer';
+import { Footer, SectionContacts,  SectionAdvantages, SectionAU, SectionWelcome} from '../../components/';
 
 
 
@@ -20,4 +15,3 @@ export const HomePage = () => {
         </div>);
 }
 
-// export default HomePage;
