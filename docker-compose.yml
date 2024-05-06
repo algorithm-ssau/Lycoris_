@@ -1,0 +1,39 @@
+# doesn't work
+version: '1.1'
+services: 
+  j_frontend:
+    build: frontend/
+    container_name: frontend
+    command: npm start
+    volumes: 
+      - ./frontend:/lycoris/frontend
+    ports: 
+      - '3000:3000'
+      # - '3001:3001'
+    networks: 
+      # - front
+      - back
+    depends_on:
+      - j_backend
+    tty: true
+  
+  j_backend:
+    build: backend/
+    restart: always
+    container_name: backend
+    volumes: 
+      - ./backend:/lycoris/backend
+    command: npm start
+    networks: 
+      - back
+    ports:
+      - '3001:3001'
+
+networks:
+  # front:
+  #   name: front
+  #   driver: bridge
+  back:
+    name: back
+    driver: bridge
+      

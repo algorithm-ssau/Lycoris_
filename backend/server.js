@@ -5,7 +5,7 @@ const flowerRoutes = require('./routes/flower-routes');
 const orderRoutes = require('./routes/order-routes');
 const userRoutes = require('./routes/user-routes');
 
-const PORT = 3000;
+const PORT = 3001;
 const URL = "mongodb+srv://lycoris_recoil:ohXyjXDRPY87xTTC@lycoris.msvik4v.mongodb.net/lycoris?retryWrites=true&w=majority&appName=Lycoris";
 
 const app = express();

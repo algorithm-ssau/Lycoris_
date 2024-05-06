@@ -24,6 +24,8 @@ function App() {
   // },
   // []
   // );
+  
+  // !! For docker in package.json changed proxy from "http://localhost:3001" to "http://backend:3001"
 
   // TODO: route to /flower
   return (
@@ -32,7 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopItemsPage/>} />
-        <Route path="/flower" element={<PurchasePage/>} />
+        <Route path="/flower/:id" element={<PurchasePage/>} />
 
       </Routes>
     </BrowserRouter>
