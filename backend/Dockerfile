@@ -1,5 +1,3 @@
-# IT WORKS. HEHEH
-
 FROM mongo-express:1.0.2-20
 
 WORKDIR /backend

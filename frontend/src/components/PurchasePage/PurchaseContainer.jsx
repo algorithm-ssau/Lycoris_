@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export const Purchase = () => {
     // TODO: make connection with backend
     const params = useParams();
-    // console.log(params);
     const [flower, setFlower] = useState();
+    const domain = "http://127.0.0.3:3001";
+
 
     useEffect(() => {
-        fetch('/flower/' + params.id)
-            .then(response => response.json())
-            .then(response => setFlower(response))
+        const apiBack = domain +"/flower/" + params.id;
+        axios.get(apiBack)
+            .then(response => setFlower(response.data))
     }
         , []);
     console.log("FLOW", flower);

@@ -1,18 +1,14 @@
-# doesn't work
-version: '1.1'
+# WORKS. 
+version: '1.2'
 services: 
   j_frontend:
     build: frontend/
     container_name: frontend
     command: npm start
-    volumes: 
-      - ./frontend:/lycoris/frontend
+    networks: 
+      - back
     ports: 
       - '3000:3000'
-      # - '3001:3001'
-    networks: 
-      # - front
-      - back
     depends_on:
       - j_backend
     tty: true
@@ -21,19 +17,25 @@ services:
     build: backend/
     restart: always
     container_name: backend
-    volumes: 
-      - ./backend:/lycoris/backend
-    command: npm start
     networks: 
       - back
+    command: npm start
     ports:
       - '3001:3001'
 
+  python_api:
+    build: pythonApi/
+    restart: always
+    container_name: pythonApi
+    volumes: 
+      - ./pythonApi:/lycoris/pythonApi
+    command: flask --app flsite run --host 0.0.0.0 -p 3002
+    networks:
+      back:
+    ports:
+      - '3002:3002'
+
 networks:
-  # front:
-  #   name: front
-  #   driver: bridge
   back:
-    name: back
     driver: bridge
       
