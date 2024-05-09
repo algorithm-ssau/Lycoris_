@@ -2,50 +2,52 @@ from flask import Flask, render_template, url_for, request, flash, session, redi
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+import requests
 
 app = Flask(__name__)
 jwt = JWTManager(app)
 app.config['SECRET_KEY'] = 'fc7717786e8e36a8b77e9055d25bb430'
 app.config["MONGO_URL"] = "mongodb+srv://lycoris_recoil:ohXyjXDRPY87xTTC@lycoris.msvik4v.mongodb.net/lycoris?retryWrites=true&w=majority&appName=Lycoris"
 mongo = PyMongo(app, app.config["MONGO_URL"])
+# URL вашего API Express.js для регистрации пользователя
 
-@app.route("/")
-def index():
-    return render_template('index.html', title = "Главная", h1 = "Цветочки")
 
-@app.route("/register", methods=["POST", "GET"])
+@app.route("/register", methods=["POST"])
 def register():
-    if request.method == "POST":
-        db = mongo.db.users
-        # Получение данных из формы
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        password_check = request.form['password_check']
+    if not request.json or not all(key in request.json for key in ['name', 'email', 'password', 'password_check']):
+        abort(400)
 
-        # Проверка совпадения паролей
-        if password != password_check:
-            flash('Пароли не совпадают', category='error')
-            return redirect(url_for('register'))
+    name = request.json['name']
+    email = request.json['email']
+    password = request.json['password']
+    password_check = request.json['password_check']
 
-        # Проверка наличия пользователя в бд
-        if db.find_one({"email": email}):
-            flash('Пользователь с таким email уже существует', category='error')
-            return redirect(url_for('register'))
+    if password != password_check:
+        abort(400, "Passwords do not match")
 
-        # Хеширование пароля
-        hashed_password = generate_password_hash(password)
+    ## Проверка наличия пользователя в бд
+    #url = 'http://localhost:3000/user/exists'
+    #data = {'email': email}
+    #response = requests.post(url, json=data)
 
-        # Вставка пользователя в базу данных
-        db.insert_one({
-            "name": name,
-            "email": email,
-            "password": hashed_password
-        })
+    #if response.status_code == 200 and response.json()['exists']:
+    #    abort(400, "User with this email already exists")
 
-        flash('Регистрация прошла успешно', category='success')
-        return redirect(url_for('login'))
-    return render_template('register.html', title="Регистрация")
+    hashed_password = generate_password_hash(password)
+    data = {
+        "name": name,
+        "email": email,
+        "password": hashed_password
+    }
+
+    url = 'http://localhost:3000/user'
+    response = requests.post(url, json=data)
+
+    if response.status_code == 201:
+        return jsonify({'message': 'Registration successful'}), 201
+    else:
+        return jsonify({'error': 'Failed to register'}), 500
+
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
