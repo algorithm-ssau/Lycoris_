@@ -61,10 +61,25 @@ const getUsers = (req, res) => {
     .catch((err) => handleError(res, err));
   };
   
+  const checkUserExists = (req, res) => {
+    const email = req.body.email;
+    User
+    .findOne({ email: email })
+    .then((result) => {
+        if (result) {
+            res.status(200).json({ exists: true });
+        } else {
+            res.status(200).json({ exists: false });
+        }
+    })
+    .catch((err) => handleError(res, err));
+  };
+
   module.exports = {
     getUsers,
     getUser,
     deleteUser,
     addUser,
     updateUser,
+    checkUserExists,
   };
