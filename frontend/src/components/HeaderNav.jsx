@@ -15,11 +15,10 @@ export const HeaderNav = () => {
                     <div></div>
                     <div>
                         <li className="nav_elem"><Link to={""}>Sign in</Link></li>
-                        <li className="nav_elem"><Link to={""}>Cart</Link></li>
+                        <li className="nav_elem"><Link to={"/cart"}>Cart</Link></li>
                     </div>
                 </ul>
             </nav>
         </header>);
 }
 
-// export default HeaderNav;

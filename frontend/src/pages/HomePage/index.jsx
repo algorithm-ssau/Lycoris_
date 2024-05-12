@@ -1,23 +1,19 @@
 import React from 'react';
-
-import {SectionWelcome } from '../../components/HomePage/SectionWelcome';
-import {SectionAU } from '../../components/HomePage/SectionAU';
-import {SectionAdvantages } from '../../components/HomePage/SectionAdvantages';
-import {SectionContacts } from '../../components/HomePage/SectionContacts';
-import { Footer } from '../../components/HomePage/Footer';
+import { Footer, SectionContacts, SectionAdvantages, SectionAU, SectionWelcome } from '../../components/';
 
 
 
 export const HomePage = () => {
     return (
-        <div>
-            <SectionWelcome/>
-            <SectionAU/>
-            <SectionAdvantages/>
-            <SectionContacts/>
-            <Footer/>
+        <>
+            <main>
+                <SectionWelcome />
+                <SectionAU />
+                <SectionAdvantages />
+                <SectionContacts />
+            </main>
+            <Footer />
 
-        </div>);
+        </>);
 }
 
-// export default HomePage;

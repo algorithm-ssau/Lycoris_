@@ -1,6 +1,6 @@
 // import Reactfrom from 'react';
 import './styles/App.css';
-import { HomePage, ShopItemsPage } from './pages';
+import { CartPage, HomePage, PurchasePage, ShopItemsPage } from './pages';
 import { HeaderNav } from './components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -24,14 +24,15 @@ function App() {
   // },
   // []
   // );
-
-
+  
   return (
     <BrowserRouter>
       <HeaderNav />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopItemsPage/>} />
+        <Route path="/flower/:id" element={<PurchasePage/>} />
+        <Route path="/cart" element={<CartPage/>} />
 
       </Routes>
     </BrowserRouter>

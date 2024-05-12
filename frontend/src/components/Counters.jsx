@@ -1,3 +1,4 @@
+// * This just file from lessons. Don't touch it
 import React, {useState} from "react";
 import '../styles/style.css';
 

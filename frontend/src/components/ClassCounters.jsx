@@ -1,3 +1,5 @@
+// * This just file from lessons. Don't touch it
+
 import React from "react";
 
 export class ClassCounters extends React.Component {
