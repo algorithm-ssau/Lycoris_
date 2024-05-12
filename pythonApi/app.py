@@ -24,12 +24,18 @@ def create_user(name, address, email, password):
         app.logger.error(f"Failed to create user: {e}")
         raise
 
-def get_password_by_email(email):
-    user = mongo.db.users.find_one({"email": email})
+def get_user_by_email():
+    email = request.args.get('email')  # Получаем адрес электронной почты из запроса
+    if not email:
+        return jsonify({"error": "Email is required"}), 400
+    
+    user = find_user_by_email(email)  # Ищем пользователя по адресу электронной почты
     if user:
-        return user["password"]
+        # Если пользователь найден, возвращаем его информацию
+        return jsonify(user), 200
     else:
-        return None
+        # Если пользователь не найден, возвращаем ошибку
+        return jsonify({"error": "User not found"}), 404
     
 @app.route("/register", methods=["POST"])
 def register_user():
@@ -61,16 +67,20 @@ def login_user():
     email = data.get('email')
     password = data.get('password')
 
-    hashed_password = get_password_by_email(email)
+    userData = get_user_by_email(email)
 
-    if hashed_password != None:
-        if check_password_hash(hashed_password, password):
-            access_token = create_access_token(identity=email)
+    if userData:
+        hashed_password = userData.get('password')
+        user_id = userData.get('_id')
+
+        if hashed_password and check_password_hash(hashed_password, password):
+            access_token = create_access_token(identity=str(user_id))
             return jsonify({'access_token': access_token}), 201
         else:
             return jsonify({'message': 'Incorrect password'}), 401
     else:
         return jsonify({'message': 'Incorrect email'}), 401
+
 
 @app.route("/profile/<name>")
 @jwt_required() # Защищаем этот маршрут с помощью JWT
