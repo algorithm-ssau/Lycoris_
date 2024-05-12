@@ -7,6 +7,7 @@ const {
   addUser,
   updateUser,
   checkUserExists,
+  findUserByEmail,
 } = require('../controllers/user-controller');
 
 const router = express.Router();
@@ -17,6 +18,7 @@ router.delete('/user/:id', deleteUser);
 router.post('/user', addUser);
 router.patch('/user/:id', updateUser);
 router.post('/user/exists', checkUserExists);
+router.post('/user/email', findUserByEmail);
 
 
 module.exports = router;

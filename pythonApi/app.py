@@ -9,8 +9,6 @@ jwt = JWTManager(app)
 app.config['SECRET_KEY'] = 'fc7717786e8e36a8b77e9055d25bb430'
 app.config["MONGO_URL"] = "mongodb+srv://lycoris_recoil:ohXyjXDRPY87xTTC@lycoris.msvik4v.mongodb.net/lycoris?retryWrites=true&w=majority&appName=Lycoris"
 mongo = PyMongo(app, app.config["MONGO_URL"])
-# URL вашего API Express.js для регистрации пользователя
-
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -25,13 +23,13 @@ def register():
     if password != password_check:
         abort(400, "Passwords do not match")
 
-    ## Проверка наличия пользователя в бд
-    #url = 'http://localhost:3000/user/exists'
-    #data = {'email': email}
-    #response = requests.post(url, json=data)
+    # Проверка наличия пользователя в бд по почте
+    url = 'http://localhost:3000/user/exists'
+    data = {'email': email}
+    response = requests.post(url, json=data)
 
-    #if response.status_code == 200 and response.json()['exists']:
-    #    abort(400, "User with this email already exists")
+    if response.status_code == 200 and response.json()['exists']:
+        abort(400, "User with this email already exists")
 
     hashed_password = generate_password_hash(password)
     data = {
@@ -53,24 +51,25 @@ def register():
 def login():
     return render_template('login.html', title="Авторизация")
 
-@app.route("/api/login", methods=["POST", "GET"])
+@app.route("/login", methods=["POST", "GET"])
 def api_login():
-    db = mongo.db.users
-    name = request.form['name']
-    password = request.form['password']
-    user = db.find_one({'name': name})
+    email = request.json.get('email')
+    password = request.json.get('password')
 
-    if not user or not check_password_hash(user['password'], password):
-        return jsonify({'message': 'Неверные имя пользователя или пароль'}), 401
+    url = 'http://localhost:3000/user/email'
+    data = {'email': email}
+    response = requests.post(url, json=data)
 
-    # Создание JWT токена
-    access_token = create_access_token(identity=name)
-    # Возвращаем токен как куки в ответе
-    resp = make_response(jsonify({'access_token': access_token}))
-    resp.set_cookie('access_token', access_token)
-    return resp
+    if response.status_code == 200:
+        passwordCheck = response.json().get('password')
+        if check_password_hash(passwordCheck, password):
+            access_token = create_access_token(identity=email)
+            return jsonify({'access_token': access_token}), 201
+        else:
+            return jsonify({'message': 'Incorrect password'}), 401
+    else:
+        return jsonify({'message': 'Incorrect email'}), 401
 
-# Требует jwt токен в заголовке запроса
 @app.route("/profile/<name>")
 @jwt_required() # Защищаем этот маршрут с помощью JWT
 def profile(name):
