@@ -9,7 +9,7 @@ export const ShopItems = () => {
     const domain = "http://127.0.0.3:3001";
 
     useEffect(() => {
-        const apiBack = domain+"/flower" ;
+        const apiBack = domain + "/flower";
         axios.get(apiBack)
             .then(response => setFlowers(response.data))
     }
@@ -17,22 +17,11 @@ export const ShopItems = () => {
 
     return (
         <ul className="shop_items">
-            {/* type is flower image size  */}
-            {/* <FlowerItem flower={{ type: "big_item" }} /> */}
-
             {flowers?.map((flr, i) => {
-                let size = i == 0 ? "big_item" : "";
+                let size = i in [0] ? "big_item" : "";
                 return <FlowerItem flower={flr} metadata={{ type: size }} key={flr.id} />;
             }
             )}
-
-            {/* <FlowerItem flower={{ type: "" }} />
-            <FlowerItem flower={{ type: "" }} />
-            <FlowerItem flower={{ type: "" }} />
-            <FlowerItem flower={{ type: "" }} />
-            <FlowerItem flower={{ type: "" }} />
-            <FlowerItem flower={{ type: "" }} /> */}
-
         </ul>
     );
 }

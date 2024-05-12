@@ -1,6 +1,6 @@
 // import Reactfrom from 'react';
 import './styles/App.css';
-import { HomePage, PurchasePage, ShopItemsPage } from './pages';
+import { CartPage, HomePage, PurchasePage, ShopItemsPage } from './pages';
 import { HeaderNav } from './components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -25,9 +25,6 @@ function App() {
   // []
   // );
   
-  // !! For docker in package.json changed proxy from "http://localhost:3001" to "http://backend:3001"
-
-  // TODO: route to /flower
   return (
     <BrowserRouter>
       <HeaderNav />
@@ -35,6 +32,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopItemsPage/>} />
         <Route path="/flower/:id" element={<PurchasePage/>} />
+        <Route path="/cart" element={<CartPage/>} />
 
       </Routes>
     </BrowserRouter>

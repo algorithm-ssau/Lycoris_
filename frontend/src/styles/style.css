@@ -55,7 +55,7 @@ ul {
     list-style: none;
 }
 
-a {
+a, .Link {
     font-family: 'Gilroy-Medium';
     text-decoration: none;
     size: 16px;
@@ -139,13 +139,15 @@ button {
     grid-template-columns: 1fr 1fr;
 }
 
-.nav_list a {
+.nav_list a, .nav_list .Link {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
     outline: 1px solid black;
+    /* border-right: 1px solid black; */
     width: 100%;
-    height: 4vw;
+    height: 70px;
 
     /* Пока оставить как фичу */
     transition: background-color 0.3s;
@@ -271,7 +273,7 @@ div .nav_elem:nth-child(odd) {
     font-size: 38px;
 }
 
-.card a {
+.card a, .card .Link {
     
     font-size: 16px;
     font-family: 'Gilroy';
@@ -318,7 +320,7 @@ h4 {
     line-height: 140%;
 }
 
-.about_us_description a {
+.about_us_description a, .about_us_description .Link {
     margin-top: 3vw;
     transition: background-color 0.3s;
     
@@ -589,8 +591,6 @@ input {
     align-items: center;
 }
 
-/* .flower_item .Link {} */
-
 
 
 .big_item {
@@ -838,5 +838,137 @@ ul.card_list {
 
 
 
+/*Страница ОФОРМЛЕНИЯ ПОКУПКИ*/
+
+.cart_main {
+    display: grid;
+    
+    grid-template-columns: repeat(2, minmax(400px, 1fr)); 
+    box-sizing: border-box;
+    border-top: 1px solid black;
+}
+
+.purchase_header {
+    display: inline-block;
+    margin: 0;
+    font-family: 'Gilroy-Medium';
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.non_active_h {
+    color: lightgrey;
+}
+
+.purchase_header a span {
+    margin-right: 8px;
+    margin-left: 8px;
+}
 
 
+.purchase_registration {
+    padding: 40px 30% 40px 80px;
+}
+
+.purchase_registration > div, .purchase_info > div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+    margin-top: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid grey;
+}
+
+
+.cart_main p {
+    font-family: 'Gilroy-Medium';
+    font-size: 18px;
+    width: 100%;
+}
+
+.purchase_registration input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+}
+
+.purchase_registration button {
+    margin: 0;
+    width: 100%;
+
+}
+
+.purchase_registration .hidden input, .purchase_registration .hidden button {
+    display: none;
+}
+
+.purchase_registration .hidden > p {
+    color: lightgrey;
+}
+
+
+.purchase_info {
+    border-left: 1px solid black;
+    background-color: #F5F5F7;
+    padding: 40px 10%;
+    
+}
+
+.purchase_info > div.purchase_info_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.purchase_info_paragraph {
+    font-family: 'Gilroy-Regular';
+    font-size: 16px;
+}
+
+.purchase_info_item_name {
+    margin-bottom: 8px;
+}
+
+.purchase_info_item img{
+    max-width: 160px;
+    height: auto;
+    border: 1px solid black;
+    margin-right: 14px;
+}
+
+.purchase_info_item_price {
+    margin-left: auto;
+    font-family: 'Gilroy-Medium';
+}
+
+.gift_card {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 16px;
+}
+
+.gift_card input {
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+}
+
+.gift_card button {
+    margin: 0;
+    height: auto;
+    width: 100%;
+}
+
+.subtotal_results div {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.subtotal_results div > span, .purchase_info_total_price > span {
+    margin-left: auto;
+}
+
+.purchase_info_total_price {
+    display: flex;
+    margin-top: 24px;
+}

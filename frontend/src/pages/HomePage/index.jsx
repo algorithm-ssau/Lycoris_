@@ -1,17 +1,19 @@
 import React from 'react';
-import { Footer, SectionContacts,  SectionAdvantages, SectionAU, SectionWelcome} from '../../components/';
+import { Footer, SectionContacts, SectionAdvantages, SectionAU, SectionWelcome } from '../../components/';
 
 
 
 export const HomePage = () => {
     return (
-        <div>
-            <SectionWelcome/>
-            <SectionAU/>
-            <SectionAdvantages/>
-            <SectionContacts/>
-            <Footer/>
+        <>
+            <main>
+                <SectionWelcome />
+                <SectionAU />
+                <SectionAdvantages />
+                <SectionContacts />
+            </main>
+            <Footer />
 
-        </div>);
+        </>);
 }
 

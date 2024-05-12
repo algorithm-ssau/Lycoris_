@@ -5,10 +5,12 @@ import { Footer, ShopItems } from '../../components';
 
 export const ShopItemsPage = () => {
     return (
-        <div>
-            <ShopItems />
-            <Footer/>
-        </div>);
+        <>
+            <main>
+                <ShopItems />
+            </main>
+            <Footer />
+        </>);
 }
 
 // export default ShopItemsPage;

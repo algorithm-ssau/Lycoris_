@@ -8,3 +8,6 @@ export * from "./HomePage/SectionAU";
 export * from "./HomePage//SectionAdvantages";
 export * from "./HomePage/SectionContacts";
 export * from "./HomePage/SectionWelcome";
+
+export * from "./CartContent/PurchaseReg";
+export * from "./CartContent/PurchaseInfo";
