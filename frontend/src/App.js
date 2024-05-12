@@ -1,6 +1,6 @@
 // import Reactfrom from 'react';
 import './styles/App.css';
-import { HomePage, ShopItemsPage } from './pages';
+import { HomePage, LoginPage, ProfilePage, RegisterPage, ShopItemsPage } from './pages';
 import { HeaderNav } from './components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -32,7 +32,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopItemsPage/>} />
-
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/register" element={<RegisterPage/>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+        
       </Routes>
     </BrowserRouter>
   );

@@ -49,29 +49,22 @@ def register_user():
     if password != password_check:
         abort(400, "Passwords do not match")
 
-    hashed_password = generate_password_hash(password)
-
     try:
-        user_id = create_user(name, address, email, hashed_password)
-        return jsonify({"message": "User successfully registered", "user_id": user_id}), 201
+        user_id = create_user(name, address, email, password)
+        return jsonify({"message": "User successfully registered", "user_id": str(user_id)}), 201
     except:
         return jsonify({"error": "Failed to register user"}), 500
 
-
-
-@app.route("/login", methods=["POST", "GET"])
+@app.route("/login", methods=["POST"])
 def login_user():
     data = request.json
     email = data.get('email')
     password = data.get('password')
 
-    url = 'http://localhost:3000/user/email'
-    data = {'email': email}
-    response = requests.post(url, json=data)
+    hashed_password = get_password_by_email(email)
 
-    if response.status_code == 200:
-        passwordCheck = response.json().get('password')
-        if check_password_hash(passwordCheck, password):
+    if hashed_password != None:
+        if check_password_hash(hashed_password, password):
             access_token = create_access_token(identity=email)
             return jsonify({'access_token': access_token}), 201
         else:
@@ -88,11 +81,11 @@ def profile(name):
         abort(401)
     return f"Пользователь {name}"
 
-@app.route("/register", methods=["POST", "GET"])
+@app.route("/register", methods=["GET"])
 def login():
     return render_template('register.html', title="Регистрация")
 
-@app.route("/login", methods=["POST", "GET"])
+@app.route("/login", methods=["GET"])
 def login():
     return render_template('login.html', title="Авторизация")
 

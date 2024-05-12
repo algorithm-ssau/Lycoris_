@@ -14,7 +14,7 @@ export const HeaderNav = () => {
                     </div>
                     <div></div>
                     <div>
-                        <li className="nav_elem"><Link to={""}>Sign in</Link></li>
+                        <li className="nav_elem"><Link to={"/register"}>Sign in</Link></li>
                         <li className="nav_elem"><Link to={""}>Cart</Link></li>
                     </div>
                 </ul>
