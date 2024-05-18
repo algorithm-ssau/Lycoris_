@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Navigate  } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import '../../styles/style.css';
 
 export const RegisterForm = () => {
@@ -11,15 +11,14 @@ export const RegisterForm = () => {
         password_check: ''
     });
 
-    const [redirectToLogin, setRedirectToLogin] = useState(false); // Состояние для перенаправления на страницу /login
-    const [redirectToProfile, setRedirectToProfile] = useState(false); // Состояние для перенаправления на страницу /profile
+    const [redirectToLogin, setRedirectToLogin] = useState(false);
+    const [redirectToProfile, setRedirectToProfile] = useState(false);
 
     useEffect(() => {
-        // Проверяем, авторизован ли пользователь и устанавливаем соответствующее состояние
         if (localStorage.getItem('token')) {
             setRedirectToProfile(true);
         }
-    }, []); // Пустой массив зависимостей, чтобы эффект выполнялся только один раз при загрузке компонента
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,20 +27,24 @@ export const RegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/register', formData);
+            const response = await axios.post('http://localhost:5000/register', formData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
             console.log(response.data);
-            setRedirectToLogin(true); // Устанавливаем состояние для перенаправления на страницу /login
+            setRedirectToLogin(true);
         } catch (error) {
             console.error('Error:', error);
         }
     };
 
     if (redirectToLogin) {
-        return <Navigate  to="/login" />; // Перенаправление на страницу /login при успешной регистрации
+        return <Navigate to="/login" />;
     }
 
     if (redirectToProfile) {
-        return <Navigate  to="/profile" />; // Перенаправление на страницу /profile, если пользователь уже авторизован
+        return <Navigate to="/profile" />;
     }
 
     return (

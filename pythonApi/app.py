@@ -2,11 +2,25 @@ from flask import Flask, request, abort, jsonify
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token
+from flask_cors import CORS
+from bson import ObjectId
+
 app = Flask(__name__)
 jwt = JWTManager(app)
+CORS(app)  # Это добавит поддержку CORS для всех маршрутов
 app.config['SECRET_KEY'] = 'fc7717786e8e36a8b77e9055d25bb430'
 app.config["MONGO_URL"] = "mongodb+srv://lycoris_recoil:ohXyjXDRPY87xTTC@lycoris.msvik4v.mongodb.net/lycoris?retryWrites=true&w=majority&appName=Lycoris"
 mongo = PyMongo(app, app.config["MONGO_URL"])
+
+
+@app.route("/user/<user_id>", methods=["GET"])
+def get_user_by_id(user_id):
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    if user:
+        user['_id'] = str(user['_id']) 
+        return jsonify(user), 200
+    else:
+        return jsonify({"error": "User not found"}), 404
 
 
 def find_user_by_email(email):
@@ -22,18 +36,12 @@ def create_user(name, address, email, password):
         app.logger.error(f"Failed to create user: {e}")
         raise
 
-def get_user_by_email():
-    email = request.args.get('email')  # Получаем адрес электронной почты из запроса
-    if not email:
-        return jsonify({"error": "Email is required"}), 400
-    
-    user = find_user_by_email(email)  # Ищем пользователя по адресу электронной почты
+def get_user_by_email(email):
+    user = find_user_by_email(email)
     if user:
-        # Если пользователь найден, возвращаем его информацию
-        return jsonify(user), 200
-    else:
-        # Если пользователь не найден, возвращаем ошибку
-        return jsonify({"error": "User not found"}), 404
+        user['_id'] = str(user['_id'])
+    return user
+
     
 @app.route("/register", methods=["POST"])
 def register_user():
@@ -65,19 +73,20 @@ def login_user():
     email = data.get('email')
     password = data.get('password')
 
-    userData = get_user_by_email(email)
+    user = get_user_by_email(email)
 
-    if userData:
-        hashed_password = userData.get('password')
-        user_id = userData.get('_id')
+    if user:
+        hashed_password = user.get('password')
+        user_id = user.get('_id')
 
         if hashed_password and check_password_hash(hashed_password, password):
-            access_token = create_access_token(identity=str(user_id))
+            access_token = create_access_token(identity=user_id)
             return jsonify({'access_token': access_token}), 201
         else:
             return jsonify({'message': 'Incorrect password'}), 401
     else:
         return jsonify({'message': 'Incorrect email'}), 401
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)

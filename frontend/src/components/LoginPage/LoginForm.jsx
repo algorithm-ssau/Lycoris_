@@ -8,7 +8,7 @@ export const LoginForm = () => {
         email: '',
         password: ''
     });
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,20 +17,22 @@ export const LoginForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/login', formData);
-            const { access_token } = response.data; // Получаем токен из ответа
-            localStorage.setItem('token', access_token); // Сохраняем токен в localStorage
+            const response = await axios.post('http://localhost:5000/login', formData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const { access_token } = response.data;
+            localStorage.setItem('token', access_token);
             console.log('JWT token:', access_token);
-            // Перенаправление пользователя на страницу профиля
-            history.push('/profile');
+            navigate('/profile');
         } catch (error) {
             console.error('Error:', error);
         }
     };
 
-    // Проверяем, авторизован ли пользователь и перенаправляем на страницу профиля
     if (localStorage.getItem('token')) {
-        history.push('/profile');
+        navigate('/profile');
     }
 
     return (
