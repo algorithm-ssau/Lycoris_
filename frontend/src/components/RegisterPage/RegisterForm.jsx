@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Navigate  } from 'react-router-dom';
 import '../../styles/style.css';
 
 export const RegisterForm = () => {
@@ -37,11 +37,11 @@ export const RegisterForm = () => {
     };
 
     if (redirectToLogin) {
-        return <Redirect to="/login" />; // Перенаправление на страницу /login при успешной регистрации
+        return <Navigate  to="/login" />; // Перенаправление на страницу /login при успешной регистрации
     }
 
     if (redirectToProfile) {
-        return <Redirect to="/profile" />; // Перенаправление на страницу /profile, если пользователь уже авторизован
+        return <Navigate  to="/profile" />; // Перенаправление на страницу /profile, если пользователь уже авторизован
     }
 
     return (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Navigate  } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
 
 const ProfilePage = () => {
@@ -57,7 +57,7 @@ const ProfilePage = () => {
 
     if (!isAuthenticated) {
         // Если пользователь не авторизован, перенаправляем его на страницу входа
-        return <Redirect to="/login" />;
+        return <Navigate to="/login" />;
     }
 
     if (!user) {

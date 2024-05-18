@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/style.css';
 
@@ -8,7 +8,7 @@ export const LoginForm = () => {
         email: '',
         password: ''
     });
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
