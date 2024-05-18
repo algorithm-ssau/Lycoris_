@@ -1,9 +1,7 @@
-from flask import Flask, render_template, url_for, request, flash, session, redirect,abort, g, jsonify, make_response
+from flask import Flask, request, abort, jsonify
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-import requests
-
+from flask_jwt_extended import JWTManager, create_access_token
 app = Flask(__name__)
 jwt = JWTManager(app)
 app.config['SECRET_KEY'] = 'fc7717786e8e36a8b77e9055d25bb430'
@@ -80,32 +78,6 @@ def login_user():
             return jsonify({'message': 'Incorrect password'}), 401
     else:
         return jsonify({'message': 'Incorrect email'}), 401
-
-
-@app.route("/profile/<name>")
-@jwt_required() # Защищаем этот маршрут с помощью JWT
-def profile(name):
-    # Получаем идентификатор пользователя из JWT токена
-    current_user = get_jwt_identity()
-    if current_user != name:
-        abort(401)
-    return f"Пользователь {name}"
-
-@app.route("/register", methods=["GET"])
-def login():
-    return render_template('register.html', title="Регистрация")
-
-@app.route("/login", methods=["GET"])
-def login():
-    return render_template('login.html', title="Авторизация")
-
-@app.route('/users', methods=['GET'])
-def get_users():
-    users = mongo.db.users.find()
-    user_list = []
-    for user in users:
-        user_list.append({'name': user['name'], 'email': user['email'], 'password': user['password']})
-    return jsonify(user_list)
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
