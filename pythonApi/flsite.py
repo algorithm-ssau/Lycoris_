@@ -1,90 +1,92 @@
-from flask import Flask, render_template, url_for, request, flash, session, redirect,abort, g, jsonify, make_response
+from flask import Flask, request, abort, jsonify
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager, create_access_token
+from flask_cors import CORS
+from bson import ObjectId
 
 app = Flask(__name__)
 jwt = JWTManager(app)
+CORS(app)
 app.config['SECRET_KEY'] = 'fc7717786e8e36a8b77e9055d25bb430'
 app.config["MONGO_URL"] = "mongodb+srv://lycoris_recoil:ohXyjXDRPY87xTTC@lycoris.msvik4v.mongodb.net/lycoris?retryWrites=true&w=majority&appName=Lycoris"
 mongo = PyMongo(app, app.config["MONGO_URL"])
 
-@app.route("/")
-def index():
-    return render_template('index.html', title = "Главная", h1 = "Цветочки")
 
-@app.route("/register", methods=["POST", "GET"])
-def register():
-    if request.method == "POST":
-        db = mongo.db.users
-        # Получение данных из формы
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        password_check = request.form['password_check']
+@app.route("/user/<user_id>", methods=["GET"])
+def get_user_by_id(user_id):
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    if user:
+        user['_id'] = str(user['_id']) 
+        return jsonify(user), 200
+    else:
+        return jsonify({"error": "User not found"}), 404
 
-        # Проверка совпадения паролей
-        if password != password_check:
-            flash('Пароли не совпадают', category='error')
-            return redirect(url_for('register'))
 
-        # Проверка наличия пользователя в бд
-        if db.find_one({"email": email}):
-            flash('Пользователь с таким email уже существует', category='error')
-            return redirect(url_for('register'))
+def find_user_by_email(email):
+    return mongo.db.users.find_one({"email": email})
 
-        # Хеширование пароля
+def create_user(name, address, email, password):
+    try:
         hashed_password = generate_password_hash(password)
+        user_data = {"name": name, "address": address, "email": email, "password": hashed_password}
+        result = mongo.db.users.insert_one(user_data)
+        return result.inserted_id
+    except Exception as e:
+        app.logger.error(f"Failed to create user: {e}")
+        raise
 
-        # Вставка пользователя в базу данных
-        db.insert_one({
-            "name": name,
-            "email": email,
-            "password": hashed_password
-        })
+def get_user_by_email(email):
+    user = find_user_by_email(email)
+    if user:
+        user['_id'] = str(user['_id'])
+    return user
 
-        flash('Регистрация прошла успешно', category='success')
-        return redirect(url_for('login'))
-    return render_template('register.html', title="Регистрация")
+    
+@app.route("/register", methods=["POST"])
+def register_user():
+    if not request.json or not all(key in request.json for key in ['name', 'email', 'password', 'password_check']):
+        abort(400)
 
-@app.route("/login", methods=["POST", "GET"])
-def login():
-    return render_template('login.html', title="Авторизация")
+    data = request.json
+    name = data.get('name')
+    address = data.get('address')
+    email = data.get('email')
+    password = data.get('password')
+    password_check = data.get('password_check')
 
-@app.route("/api/login", methods=["POST", "GET"])
-def api_login():
-    db = mongo.db.users
-    name = request.form['name']
-    password = request.form['password']
-    user = db.find_one({'name': name})
+    if find_user_by_email(email):
+        return jsonify({"error": "User with this email already exists"}), 400
 
-    if not user or not check_password_hash(user['password'], password):
-        return jsonify({'message': 'Неверные имя пользователя или пароль'}), 401
+    if password != password_check:
+        abort(400, "Passwords do not match")
 
-    # Создание JWT токена
-    access_token = create_access_token(identity=name)
-    # Возвращаем токен как куки в ответе
-    resp = make_response(jsonify({'access_token': access_token}))
-    resp.set_cookie('access_token', access_token)
-    return resp
+    try:
+        user_id = create_user(name, address, email, password)
+        return jsonify({"message": "User successfully registered", "user_id": str(user_id)}), 201
+    except:
+        return jsonify({"error": "Failed to register user"}), 500
 
-# Требует jwt токен в заголовке запроса
-@app.route("/profile/<name>")
-@jwt_required() # Защищаем этот маршрут с помощью JWT
-def profile(name):
-    # Получаем идентификатор пользователя из JWT токена
-    current_user = get_jwt_identity()
-    if current_user != name:
-        abort(401)
-    return f"Пользователь {name}"
+@app.route("/login", methods=["POST"])
+def login_user():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
 
-@app.route('/users', methods=['GET'])
-def get_users():
-    users = mongo.db.users.find()
-    user_list = []
-    for user in users:
-        user_list.append({'name': user['name'], 'email': user['email'], 'password': user['password']})
-    return jsonify(user_list)
+    user = get_user_by_email(email)
+
+    if user:
+        hashed_password = user.get('password')
+        user_id = user.get('_id')
+
+        if hashed_password and check_password_hash(hashed_password, password):
+            access_token = create_access_token(identity=user_id)
+            return jsonify({'access_token': access_token}), 201
+        else:
+            return jsonify({'message': 'Incorrect password'}), 401
+    else:
+        return jsonify({'message': 'Incorrect email'}), 401
+
 
 if __name__ == "__main__":
-    app.run(debug=True, port=3002)
+    app.run(debug=True, port=3000)
