@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const flowerRoutes = require('./routes/flower-routes');
 const orderRoutes = require('./routes/order-routes');
 const userRoutes = require('./routes/user-routes');
+const userShoppingCarts = require('./routes/shoppingCart-routes');
 
 const PORT = 3001;
 const URL = "mongodb+srv://lycoris_recoil:ohXyjXDRPY87xTTC@lycoris.msvik4v.mongodb.net/lycoris?retryWrites=true&w=majority&appName=Lycoris";
@@ -28,8 +29,7 @@ app.use(express.json());
 app.use(flowerRoutes);
 app.use(orderRoutes);
 app.use(userRoutes);
-
-
+app.use(userShoppingCarts);
 
 
 mongoose
