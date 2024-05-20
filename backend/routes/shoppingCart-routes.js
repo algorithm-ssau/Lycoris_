@@ -6,7 +6,7 @@ const {
   deleteShoppingCart,
   addShoppingCart,
   updateShoppingCart,
-} = require('../controllers/ShoppingCart-controller');
+} = require('../controllers/shoppingCart-controller');
 
 const router = express.Router();
 
