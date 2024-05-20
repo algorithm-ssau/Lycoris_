@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 
 export const Purchase = () => {
     // TODO: make connection with backend
@@ -10,12 +11,38 @@ export const Purchase = () => {
 
 
     useEffect(() => {
-        const apiBack = domain +"/flower/" + params.id;
+        const apiBack = domain + "/flower/" + params.id;
         axios.get(apiBack)
             .then(response => setFlower(response.data))
     }
         , []);
     console.log("FLOW", flower);
+
+
+
+
+
+    // ! TODO: make check if order exist, if its status is false and only then update order or create new one 
+    const needee =  () => {
+        const token = localStorage.getItem('token');
+        const userId = getUserIdFromToken(token);
+        const response =  axios.get(`http://127.0.0.4:3002/user/${userId}`);
+        console.log("ROFLS: ", response);
+        // axios.get(domain + '/order' );
+
+    };
+
+
+    const getUserIdFromToken = (token) => {
+        try {
+            const decodedToken = jwt.decode(token);
+            return decodedToken ? decodedToken.sub : null;
+        } catch (error) {
+            console.error('Error decoding token:', error);
+            return null;
+        }
+    };
+
 
     return (
         <>
@@ -61,7 +88,14 @@ export const Purchase = () => {
                     </ul>
                     <button className="carousel_btn"><img src="/images/icons/right_carousel_arrow.svg" alt="" /></button>
                 </div>
-                <button>ADD TO BASKET</button>
+
+
+                {/* <Form onSubmit={needee}> */}
+
+                    <button onClick={needee}>ADD TO BASKET</button>
+
+                {/* </Form> */}
+
             </div>
 
             <div className="you_may_also"><h2>You may also like...</h2></div>
