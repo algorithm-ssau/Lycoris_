@@ -7,34 +7,32 @@ export const Footer = () => {
         <footer className="footer ">
             <div className="email_block footer_container">
                 <p>
-                    Remember to offer beautiful flowers from Samara LuxeBouquets Valentines
-                    Day, Mothers Day, Christmas... Reminds you 7 days before. No spam or
-                    sharing your address
+                    Не забывайте заказывать цветы от Samara LuxeBouquets на День Святого Валентина, День Матери, 8 марта. Мы напомним вам за 7 дней до праздника. И никакого спама.
                 </p>
                 <input
                     type="text"
                     id="email_input"
                     name="email"
-                    placeholder="Your Email"
+                    placeholder="Ваш Email"
                 />
-                <button>Remind</button>
+                <button>Напомнить</button>
             </div>
             <div className="contact_block footer_container">
-                <h5>Contact Us</h5>
+                <h5>Свяжитесь с нами</h5>
                 <div className="contact_point">
-                    <h6>Address</h6>
+                    <h6>Адрес</h6>
                     <div>Московское шоссе 34, Самара</div>
                 </div>
                 <div className="contact_point">
-                    <h6>Phone</h6>
+                    <h6>Телефон</h6>
                     <div>88005553535</div>
                 </div>
                 <div className="contact_point">
-                    <h6>General Enquiry</h6>
+                    <h6>Электронный адрес</h6>
                     <div>flowers@mail.ru</div>
                 </div>
                 <div className="contact_point">
-                    <h5>Follow Us</h5>
+                    <h5>Подписывайтесь на нас</h5>
                     <div className="follow_links">
                         <a href="">
                             <img src="images/icons/Instagram.svg" alt="" />
@@ -55,59 +53,59 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="store_links_block footer_container">
-                <h5>Shop</h5>
+                <h5>Ассортимент</h5>
                 <ul className="footer_nav_links">
                     <li>
-                        <a href="">All Products</a>
+                        <a href="">Все товары</a>
                     </li>
                     <li>
-                        <a href="">Fresh Flowers</a>
+                        <a href="">Свежие цветы</a>
                     </li>
                     <li>
-                        <a href="">Dried Flowers</a>
+                        <a href="">Сухоцветы</a>
                     </li>
                     <li>
-                        <a href="">Live Plants</a>
+                        <a href="">Живые растения</a>
                     </li>
                     <li>
-                        <a href="">Designer Vases</a>
+                        <a href="">Дизайнерские вазы</a>
                     </li>
                     <li>
-                        <a href="">Arome Candles</a>
+                        <a href="">Ароматические свечи</a>
                     </li>
                     <li>
-                        <a href="">Freshener Diffuser</a>
+                        <a href="">Диффузоры для ароматизаторов</a>
                     </li>
                 </ul>
-                <h5>Service</h5>
+                <h5>Услуги</h5>
                 <ul className="footer_nav_links">
                     <li>
-                        <a href="">Flower Subscription</a>
+                        <a href="">Подписка на доставку цветов</a>
                     </li>
                     <li>
-                        <a href="">Wedding &amp; Event Decor</a>
+                        <a href="">Свадебный &amp; Праздничный Декор</a>
                     </li>
                 </ul>
             </div>
             <div className="about_us_block footer_container">
-                <h5>About Us</h5>
+                <h5>О нас</h5>
                 <ul>
                     <li>
-                        <a href="">Our story</a>
+                        <a href="">Наша история</a>
                     </li>
                     <li>
-                        <a href="">Blog</a>
+                        <a href="">Блог</a>
                     </li>
                 </ul>
                 <ul>
                     <li>
-                        <a href="">Shipping &amp; returns</a>
+                        <a href="">Доставка &amp; возврат</a>
                     </li>
                     <li>
-                        <a href="">Terms &amp; conditions</a>
+                        <a href="">Правила &amp; условия</a>
                     </li>
                     <li>
-                        <a href="">Privacy policy</a>
+                        <a href="">Политика конфиденциальности</a>
                     </li>
                 </ul>
             </div>
