@@ -5,13 +5,13 @@ import '../../styles/style.css';
 export const SectionAU = () => {
     return (<section className="about_us">
         <h4>
-            About us
+            О нас
         </h4>
         <div className="about_us_description">
-            <h3>our story</h3>
+            <h3>Наша история</h3>
             <h2>Samara LuxeBouquets</h2>
-            <p>We are a modern local floral studio, which specializes in the design and delivery of unique bouquets. We have the best florists who carefully select each look, our studio cooperates directly with farms for growing different flowers, so we always have fresh flowers, which are collected by our florists in exquisite bouquets. We have a collection of fresh bouquets, collections of dried bouquets, house plants, as well as fragrant candles from luxury brands to create the perfect atmosphere. Make someone's day amazing by sending flowers, plants and gifts the same or next day. Ordering flowers online has never been easier.</p>
-            <a href="" className="btn">Learn More</a>
+            <p>Мы - современная местная флористическая студия, которая специализируется на создании и доставке уникальных букетов. У нас работают лучшие флористы, которые тщательно подбирают каждый образ, наша студия напрямую сотрудничает с фермерскими хозяйствами, поэтому у нас всегда есть свежие цветы, которые наши флористы собирают в изысканные букеты. У нас есть коллекции свежих букетов, коллекции букетов из сухоцветов, комнатные растения, а также ароматические свечи от элитных брендов для создания идеальной атмосферы. Сделайте чей-то день удивительным, отправив цветы, растения и подарки сейчас же или на следующий день. Заказ цветов онлайн ещё никогда не был таким простым.</p>
+            <a href="" className="btn">Узнать больше</a>
         </div>
     </section>
     );
