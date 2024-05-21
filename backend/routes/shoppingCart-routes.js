@@ -6,6 +6,7 @@ const {
   deleteShoppingCart,
   addShoppingCart,
   updateShoppingCart,
+  getShoppingCartByUser
 } = require('../controllers/shoppingCart-controller');
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get('/shoppingCart/:id', getShoppingCart);
 router.delete('/shoppingCart/:id', deleteShoppingCart);
 router.post('/shoppingCart', addShoppingCart);
 router.patch('/shoppingCart/:id', updateShoppingCart);
+router.get('/shoppingCart/user/:user', getShoppingCartByUser);
 
 module.exports = router;
