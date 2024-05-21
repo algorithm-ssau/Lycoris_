@@ -72,11 +72,34 @@ const getShoppingCartByUser = (req, res) => {
   .catch((err) => handleError(res, err));
 };
 
+// const updateShoppingCartOfFlowers = (req, res) => {
+//   ShoppingCart
+//   .findById(req.params.id)
+//   .then((result) => {
+//   res
+//   .status(200)
+//   .json(result);
+//   })
+//   .catch((err) => handleError(res, err));
+// };
+
+const updateShoppingCartOfFlowers = (req, res) => {
+  ShoppingCart
+  .findByIdAndUpdate(req.params.id, { $push: req.body})
+  .then((result) => {
+    res
+      .status(200)
+      .json(result);
+  })
+  .catch((err) => handleError(res, err));
+};
+
 module.exports = {
   getShoppingCarts,
   getShoppingCart,
   deleteShoppingCart,
   addShoppingCart,
   updateShoppingCart,
-  getShoppingCartByUser
+  getShoppingCartByUser,
+  updateShoppingCartOfFlowers
 };

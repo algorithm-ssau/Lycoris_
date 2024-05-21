@@ -6,7 +6,8 @@ const {
   deleteShoppingCart,
   addShoppingCart,
   updateShoppingCart,
-  getShoppingCartByUser
+  getShoppingCartByUser,
+  updateShoppingCartOfFlowers
 } = require('../controllers/shoppingCart-controller');
 
 const router = express.Router();
@@ -17,5 +18,6 @@ router.delete('/shoppingCart/:id', deleteShoppingCart);
 router.post('/shoppingCart', addShoppingCart);
 router.patch('/shoppingCart/:id', updateShoppingCart);
 router.get('/shoppingCart/user/:user', getShoppingCartByUser);
+router.patch('/shoppingCart/updateFlower/:id', updateShoppingCartOfFlowers);
 
 module.exports = router;
