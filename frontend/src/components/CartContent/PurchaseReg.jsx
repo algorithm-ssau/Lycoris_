@@ -7,76 +7,76 @@ export const PurchaseRegistration = () => {
         <div className="purchase_registration">
             <h2 className="purchase_header">
                 <a href="">
-                    information <span>&gt;</span>
+                    Информация <span>&gt;</span>
                 </a>{" "}
                 <a className="non_active_h" href="">
-                    shipping <span>&gt;</span>
+                    Доставка <span>&gt;</span>
                 </a>{" "}
                 <a className="non_active_h" href="">
-                    payment
+                    Оплата
                 </a>
             </h2>
             <div className="purchase_registration_contact_info">
-                <p>1 Contact information</p>
+                <p>1 Контактная Информация</p>
                 <input
                     type="text"
                     id="name_input"
                     name="Name"
-                    placeholder="Your Name"
+                    placeholder="Ваше имя"
                 />
                 <input
                     type="text"
                     id="email_input"
                     name="Email"
-                    placeholder="Your Email"
+                    placeholder="Ваш Email"
                 />
                 <input
                     type="text"
                     id="phone_input"
                     name="Phone"
-                    placeholder="Your Phone number"
+                    placeholder="Ваш номер телефона"
                 />
-                <button className="black_btn">Continue to shipping</button>
+                <button className="black_btn">Перейти к деталям доставки</button>
             </div>
             {/* THERE */}
             <div className="purchase_registration_shipping_details hidden">
-                <p>2 Shipping details</p>
+                <p>2 Детали доставки</p>
                 <input
                     type="text"
                     id="phone_input"
                     name="Phone"
-                    placeholder="Your Phone number"
+                    placeholder="Ваш номер телефона"
                 />
                 <input
                     type="text"
                     id="phone_input"
                     name="Phone"
-                    placeholder="Your Phone number"
+                    placeholder="Ваш номер телефона"
                 />
                 <input
                     type="text"
                     id="phone_input"
                     name="Phone"
-                    placeholder="Your Phone number"
+                    placeholder="Ваш номер телефона"
                 />
-                <button className="black_btn">Continue to shipping</button>
+                <button className="black_btn">Далее</button>
             </div>
             {/* THERE */}
             <div className="purchase_registration_payment hidden">
-                <p>3 Payment</p>
+                <p>3 Оплата</p>
                 <input
                     type="text"
                     id="phone_input"
                     name="Phone"
-                    placeholder="Your Phone number"
+                    placeholder="Ваш номер телефона"
                 />
                 <input
                     type="text"
                     id="phone_input"
                     name="Phone"
-                    placeholder="Your Phone number"
+                    placeholder="Ваш номер телефона"
                 />
-                <button className="black_btn">Finish Purchase</button>
+                <button className="black_btn">Завершить покупку</button>
             </div>
         </div>
 

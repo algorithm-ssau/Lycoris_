@@ -7,53 +7,53 @@ export const PurchaseInfo = () => {
     // TODO: total price and other
     return (
         <div className="purchase_info">
-            <h2 className="purchase_header">order summary</h2>
+            <h2 className="purchase_header">Информация о заказе</h2>
             {/*ШАБЛОН ДЛЯ ПРЕДМЕТА В КОРЗИНЕ*/}
             <div className="purchase_info_item">
                 <img src="images/flowers/bouquet_dawns_delight.jpg" alt="" />
                 <div>
-                    <p className="purchase_info_item_name">Snowfall</p>
+                    <p className="purchase_info_item_name">Снегопад</p>
                     <div className="purchase_info_paragraph">
-                        Quantity (<span className="purchase_info_quantity">?</span>)
+                        Количество (<span className="purchase_info_quantity">?</span>)
                     </div>
                 </div>
                 <div className="purchase_info_item_price">
-                    $<span className="item_price">???</span>
+                    <span className="item_price">??? р.</span>
                 </div>
             </div>
             
             <div>
                 <div className="purchase_info_paragraph">
-                    If you have our gift card, enter the code to get discounts
+                Если у вас есть наша подарочная карта, введите код, чтобы получить скидку
                 </div>
                 <div className="gift_card">
                     <input
                         type="text"
                         id="gift_input"
                         name="Gift_card"
-                        placeholder="Gift card"
+                        placeholder="Код"
                     />
-                    <button className="black_btn">APPLY</button>
+                    <button className="black_btn">ПРИМЕНИТЬ</button>
                 </div>
             </div>
             <div className="subtotal_results">
                 <div className="purchase_info_paragraph">
-                    Subtotal{" "}
+                    Заказ{" "}
                     <span>
-                        $<span className="subtotal_price">???</span>
+                        <span className="subtotal_price">??? р.</span>
                     </span>
                 </div>
                 <div className="purchase_info_paragraph">
-                    Shipping{" "}
+                    Доставка{" "}
                     <span>
-                        $<span className="shipping_price">???</span>
+                        <span className="shipping_price">??? р.</span>
                     </span>
                 </div>
             </div>
             <p className="purchase_info_total_price">
-                Total{" "}
+                Итого{" "}
                 <span>
-                    $<span className="total_price">???</span>
+                    <span className="total_price">??? р.</span>
                 </span>
             </p>
         </div>
