@@ -36,21 +36,21 @@ export const Footer = () => {
                 <div className="contact_point">
                     <h5>Follow Us</h5>
                     <div className="follow_links">
-                        <a href="">
+                        <Link to="">
                             <img src="images/icons/Instagram.svg" alt="" />
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <img src="images/icons/Pinterest.svg" alt="" />
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <img src="images/icons/Facebook.svg" alt="" />
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <img src="images/icons/Twitter.svg" alt="" />
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <img src="images/icons/Telegram.svg" alt="" />
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -58,34 +58,34 @@ export const Footer = () => {
                 <h5>Shop</h5>
                 <ul className="footer_nav_links">
                     <li>
-                        <a href="">All Products</a>
+                        <Link to="/shop">All Products</Link>
                     </li>
                     <li>
-                        <a href="">Fresh Flowers</a>
+                        <Link to="/shop">Fresh Flowers</Link>
                     </li>
                     <li>
-                        <a href="">Dried Flowers</a>
+                        <Link to="/shop">Dried Flowers</Link>
                     </li>
                     <li>
-                        <a href="">Live Plants</a>
+                        <Link to="/shop">Live Plants</Link>
                     </li>
                     <li>
-                        <a href="">Designer Vases</a>
+                        <Link to="/shop">Designer Vases</Link>
                     </li>
                     <li>
-                        <a href="">Arome Candles</a>
+                        <Link to="/shop">Arome Candles</Link>
                     </li>
                     <li>
-                        <a href="">Freshener Diffuser</a>
+                        <Link to="/shop">Freshener Diffuser</Link>
                     </li>
                 </ul>
                 <h5>Service</h5>
                 <ul className="footer_nav_links">
                     <li>
-                        <a href="">Flower Subscription</a>
+                        <Link to="">Flower Subscription</Link>
                     </li>
                     <li>
-                        <a href="">Wedding &amp; Event Decor</a>
+                        <Link to="">Wedding &amp; Event Decor</Link>
                     </li>
                 </ul>
             </div>
@@ -93,21 +93,21 @@ export const Footer = () => {
                 <h5>About Us</h5>
                 <ul>
                     <li>
-                        <a href="">Our story</a>
+                        <Link to="">Our story</Link>
                     </li>
                     <li>
-                        <a href="">Blog</a>
+                        <Link to="">Blog</Link>
                     </li>
                 </ul>
                 <ul>
                     <li>
-                        <a href="">Shipping &amp; returns</a>
+                        <Link to="">Shipping &amp; returns</Link>
                     </li>
                     <li>
-                        <a href="">Terms &amp; conditions</a>
+                        <Link to="">Terms &amp; conditions</Link>
                     </li>
                     <li>
-                        <a href="">Privacy policy</a>
+                        <Link to="">Privacy policy</Link>
                     </li>
                 </ul>
             </div>

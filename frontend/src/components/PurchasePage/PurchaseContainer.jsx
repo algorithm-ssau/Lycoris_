@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import jwt from 'jsonwebtoken';
+import { getUserCart, getUserId } from '../';
 
 export const Purchase = () => {
     // TODO: make connection with backend
@@ -23,25 +23,25 @@ export const Purchase = () => {
 
 
     // ! TODO: make check if order exist, if its status is false and only then update order or create new one 
-    const needee =  () => {
-        const token = localStorage.getItem('token');
-        const userId = getUserIdFromToken(token);
-        const response =  axios.get(`http://127.0.0.4:3002/user/${userId}`);
-        console.log("ROFLS: ", response);
-        // axios.get(domain + '/order' );
-
-    };
-
-
-    const getUserIdFromToken = (token) => {
+    const needFunc = () => {
         try {
-            const decodedToken = jwt.decode(token);
-            return decodedToken ? decodedToken.sub : null;
-        } catch (error) {
-            console.error('Error decoding token:', error);
-            return null;
+            const userId = getUserId();
+            const userCart = getUserCart(userId);
+            if (userCart == null) {
+                // create cart
+            }
+            else {
+                // add to flower massive
+            }
+
+
+        }
+        catch (e) {
+            console.log("Some error:", e)
         }
     };
+
+
 
 
     return (
@@ -89,12 +89,8 @@ export const Purchase = () => {
                     <button className="carousel_btn"><img src="/images/icons/right_carousel_arrow.svg" alt="" /></button>
                 </div>
 
+                <button onClick={needFunc}>ADD TO BASKET</button>
 
-                {/* <Form onSubmit={needee}> */}
-
-                    <button onClick={needee}>ADD TO BASKET</button>
-
-                {/* </Form> */}
 
             </div>
 
