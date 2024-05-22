@@ -7,7 +7,7 @@ export const FlowerItem = (props) => {
         <Link className={'flower_item ' + props.metadata.type} to={"/flower/" + props.flower._id}>
             <img src={"/images/flowers/" + props.flower.image.name} alt="Красивое. Просто показываем" />
             <div className="item_title">{props.flower.name}</div>
-            <div className="price_title">price {props.flower.price}$</div>
+            <div className="price_title">цена {props.flower.price}р.</div>
         </Link> 
 
 

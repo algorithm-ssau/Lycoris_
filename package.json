@@ -1,0 +1,52 @@
+{
+    "name": "lycoris_",
+    "version": "1.0.0",
+    "description": "Combined frontend and backend project",
+    "main": "server.js",
+    "scripts": {
+        "start": "concurrently \"npm run start-back\" \"npm run start-front\"",
+        "start-back": "nodemon server.js",
+        "start-front": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "axios": "^1.7.2",
+        "express": "^4.19.2",
+        "mongodb": "^6.5.0",
+        "mongoose": "^8.3.2",
+        "multer": "^1.4.5-lts.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.23.0",
+        "react-scripts": "5.0.1",
+        "web-vitals": "^2.1.4"
+    },
+    "devDependencies": {
+        "@babel/plugin-transform-private-property-in-object": "^7.24.1",
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "concurrently": "^8.2.0",
+        "nodemon": "^3.1.0"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}

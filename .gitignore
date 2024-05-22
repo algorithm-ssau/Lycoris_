@@ -1,5 +1,6 @@
 tt
 tt.zip
-
+.vscode
+node_modules/
 .front/
 .front
