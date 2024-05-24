@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { getUserCart, getUserId } from '../';
+import { addFlowerToUserCart, getUserCart, getUserId } from '../';
 
 export const Purchase = () => {
     // TODO: make connection with backend
@@ -20,21 +20,10 @@ export const Purchase = () => {
 
 
 
-
-
-    // ! TODO: make check if order exist, if its status is false and only then update order or create new one 
     const needFunc = () => {
         try {
             const userId = getUserId();
-            const userCart = getUserCart(userId);
-            if (userCart == null) {
-                // create cart
-            }
-            else {
-                // add to flower massive
-            }
-
-
+            addFlowerToUserCart(userId, flower._id);
         }
         catch (e) {
             console.log("Some error:", e)
@@ -59,7 +48,7 @@ export const Purchase = () => {
                 <div className="purch_font">Идеально сочетается с:</div>
                 <div className="card_list">
                     <button className="carousel_btn"><img src="/images/icons/left_carousel_arrow.svg" alt="" /></button>
-                    <ul className="card_list">
+                    {/* <ul className="card_list">
                         <li className="purchase_card">
                             <img src="/images/glass_vase.jpg" alt="" />
                             <h6 className="card_item_name">Стеклянная ваза</h6>
@@ -85,7 +74,7 @@ export const Purchase = () => {
                             <h6 className="card_item_name">Бамбуковая ваза</h6>
                             <h6>300 р.</h6>
                         </li>
-                    </ul>
+                    </ul> */}
                     <button className="carousel_btn"><img src="/images/icons/right_carousel_arrow.svg" alt="" /></button>
                 </div>
 
