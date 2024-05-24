@@ -25,8 +25,8 @@ export const PurchaseInfo = () => {
         workCart(userId);
     }
         , []);
-        
-    console.log("CARTT: ", cart);
+
+    // console.log("CARTT: ", cart);
     if (cart != undefined)
         workPrice();
 

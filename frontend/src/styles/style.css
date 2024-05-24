@@ -870,7 +870,7 @@ ul.card_list {
     padding: 40px 30% 40px 80px;
 }
 
-.purchase_registration > div, .purchase_info > div {
+.purchase_registration > div, .purchase_registration > form, .purchase_info > div {
     display: flex;
     flex-direction: column;
     row-gap: 14px;

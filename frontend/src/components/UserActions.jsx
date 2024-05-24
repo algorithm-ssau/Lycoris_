@@ -98,6 +98,32 @@ const createUserCart = async (userId) => {
 }
 
 
+
+
+
+export const getUserOrder = async (orderData) => {
+    const userId = getUserId();
+    const userCart = await getUserCart(userId);
+    const userFlowers = userCart.data[0].flowers;
+    orderData = { ...orderData, user: userId, flowers: userFlowers };
+    createUserOrder(orderData);
+
+}
+
+const createUserOrder = async (orderData) => {
+
+    const apiBack = "http://127.0.0.3:3001/order";
+    axios.post(apiBack, orderData, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => { return response.data })
+        .catch((e) => { return null })
+}
+
+
+
 export const getUserId = () => {
     try {
         const token = localStorage.getItem('token');

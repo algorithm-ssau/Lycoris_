@@ -1,82 +1,134 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../styles/style.css';
+import { getUserOrder } from '../UserActions';
 
 export const PurchaseRegistration = () => {
-    // TODO: drop "hidden" from elements
+    const [active_h, setActive] = useState({
+        info: "",
+        delivery: "non_",
+        payment: "non_",
+    });
+    const [hiddenPurch, setHidenPurch] = useState({
+        info: "",
+        delivery: " hidden",
+        payment: " hidden",
+    });
+
+    const [orderInfo, setOrderInfo] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        card: ""
+
+    });
+
+
+    const onClickInfo = () => {
+        setActive({ ...active_h, delivery: "" });
+        setHidenPurch({ ...hiddenPurch, delivery: "" });
+    }
+    const onClickDelivery = () => {
+        setActive({ ...active_h, payment: "" });
+        setHidenPurch({ ...hiddenPurch, payment: "" });
+    }
+
+
+
+    const handleChange = (e) => {
+        setOrderInfo({ ...orderInfo, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            console.log(orderInfo);
+            const orderData = {
+                user: "",
+                address: orderInfo.address,
+                flowers: "",
+                recipient: orderInfo.name,
+                order_time: new Date(),
+                order_status: false
+            }
+            getUserOrder(orderData);
+
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
     return (
         <div className="purchase_registration">
             <h2 className="purchase_header">
-                <a href="">
+                <a className={active_h.info + "active_h"} href="">
                     Информация <span>&gt;</span>
                 </a>{" "}
-                <a className="non_active_h" href="">
+                <a className={active_h.delivery + "active_h"} href="">
                     Доставка <span>&gt;</span>
                 </a>{" "}
-                <a className="non_active_h" href="">
+                <a className={active_h.payment + "active_h"} href="">
                     Оплата
                 </a>
             </h2>
+
             <div className="purchase_registration_contact_info">
-                <p>1 Контактная Информация</p>
                 <input
                     type="text"
                     id="name_input"
-                    name="Name"
+                    name="name"
                     placeholder="Ваше имя"
+                    onChange={handleChange}
                 />
                 <input
                     type="text"
                     id="email_input"
-                    name="Email"
+                    name="email"
                     placeholder="Ваш Email"
+                    onChange={handleChange}
+
                 />
                 <input
                     type="text"
                     id="phone_input"
-                    name="Phone"
+                    name="phone"
                     placeholder="Ваш номер телефона"
+                    onChange={handleChange}
+
                 />
-                <button className="black_btn">Перейти к деталям доставки</button>
+                <button className="black_btn" onClick={onClickInfo}>Перейти к деталям доставки</button>
             </div>
             {/* THERE */}
-            <div className="purchase_registration_shipping_details hidden">
+            <div className={"purchase_registration_shipping_details" + hiddenPurch.delivery}>
                 <p>2 Детали доставки</p>
                 <input
                     type="text"
-                    id="phone_input"
-                    name="Phone"
-                    placeholder="Ваш номер телефона"
+                    id="addres_input"
+                    name="address"
+                    placeholder="Ваш адрес"
+                    onChange={handleChange}
+
                 />
-                <input
-                    type="text"
-                    id="phone_input"
-                    name="Phone"
-                    placeholder="Ваш номер телефона"
-                />
-                <input
-                    type="text"
-                    id="phone_input"
-                    name="Phone"
-                    placeholder="Ваш номер телефона"
-                />
-                <button className="black_btn">Далее</button>
+                <button className="black_btn" onClick={onClickDelivery}>Далее</button>
             </div>
             {/* THERE */}
-            <div className="purchase_registration_payment hidden">
+            <div className={"purchase_registration_payment" + hiddenPurch.payment}>
                 <p>3 Оплата</p>
                 <input
                     type="text"
-                    id="phone_input"
-                    name="Phone"
-                    placeholder="Ваш номер телефона"
+                    id="card_input"
+                    name="card"
+                    placeholder="Ваш номер карты"
+                    onChange={handleChange}
+
                 />
-                <input
-                    type="text"
-                    id="phone_input"
-                    name="Phone"
-                    placeholder="Ваш номер телефона"
-                />
-                <button className="black_btn">Завершить покупку</button>
+                <form className="" onSubmit={handleSubmit}>
+
+                    <button className="black_btn" type="submit">Завершить покупку</button>
+                </form>
+
             </div>
         </div>
 
