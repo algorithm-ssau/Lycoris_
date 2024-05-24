@@ -22,14 +22,44 @@
             </ul>
         </nav>
     </header>
-    <main class="login">
+    <main class="profile">
         <div class="blur">
-            <div class="login_section">
-                <h1 class="login_title">Авторизация</h1>
-                <p>После авторизации вы сможете получить доступ к истории заказов и редактированию ваших данных</p>
-                <input type="text" id="user_email_input" name="Email" placeholder="Ваш Email">
-                <input type="text" id="user_password_input" name="Password" placeholder="Ваш пароль">
-                <button class="black_btn">Войти</button>
+            <div class="profile_section">
+                <h1 class="profile_title">Зравствуйте, <br><span>user_name</span></h1>
+                <p>Здесь отображаются ваши данные и история заказов</p>
+                <div class="user_data">
+                    <div>Ваше имя: <span class="user_name">user_name</span></div>
+                    <a href=""><img src="images/icons/edit_data.svg" alt="Редактировать"></a>
+                </div>
+                <div class="user_data">
+                    <div>Ваш email: <span class="user_email">user_email</span></div>
+                    <a href=""><img src="images/icons/edit_data.svg" alt="Редактировать"></a>
+                </div>
+                <div class="user_data">
+                    <div>Сменить пароль</div>
+                    <a href=""><img src="images/icons/edit_data.svg" alt="Редактировать"></a>
+                </div>
+                
+
+                <p class="order_title">Ваши заказы:</p>
+                <div class="order_history">
+                    <!--ШАБЛОН ДЛЯ ПРЕДМЕТА В ИСТОРИИ (классы не менял, взял из страницы корзины)-->
+                    <div class="purchase_info_item">
+                        <img src="images/flowers/bouquet_dawns_delight.jpg" alt="">
+                        <div><p class="purchase_info_item_name">Snowfall</p><div class="purchase_info_paragraph">Quantity (<span class="purchase_info_quantity">?</span>)</div></div>
+                        <div class="purchase_info_item_price">$<span class="item_price">???</span></div>
+                    </div>
+                    <!--КОНЕЦ ШАБЛОНА-->
+
+                    <div class="purchase_info_item">
+                        <img src="images/flowers/bouquet_dawns_delight.jpg" alt="">
+                        <div><p class="purchase_info_item_name">Snowfall</p><div class="purchase_info_paragraph">Quantity (<span class="purchase_info_quantity">?</span>)</div></div>
+                        <div class="purchase_info_item_price">$<span class="item_price">???</span></div>
+                    </div>
+
+
+                </div>
+                <button class="black_btn">Завершить</button>
             </div> 
         </div>
     </main>
