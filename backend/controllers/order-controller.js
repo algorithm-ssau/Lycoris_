@@ -26,6 +26,17 @@ const getOrders = (req, res) => {
     })
     .catch((err) => handleError(res, err));
   };
+
+  const getOrderByUser = (req, res) => {
+    Order
+    .find({user: req.params.user})
+    .then((result) => {
+    res
+    .status(200)
+    .json(result);
+    })
+    .catch((err) => handleError(res, err));
+  };
   
   const deleteOrder = (req, res) => {
     Order
@@ -67,4 +78,6 @@ const getOrders = (req, res) => {
     deleteOrder,
     addOrder,
     updateOrder,
+
+    getOrderByUser
   };

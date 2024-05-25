@@ -2,11 +2,14 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 
+
+// Actions with Flowers
+
 export const getPriceAllFlowers = async (cartFlower) => {
     let allPrice = 0;
 
     await Promise.all(cartFlower?.map(async (flr) => {
-        const tempPrice = await someFucn(flr);
+        const tempPrice = await getFlrPrice(flr);
         allPrice += tempPrice;
     }
     ));
@@ -14,7 +17,7 @@ export const getPriceAllFlowers = async (cartFlower) => {
     return allPrice;
 }
 
-const someFucn = async (flr) => {
+const getFlrPrice = async (flr) => {
     const tempFlr = await getFlowerById(flr.flower)
         .catch((e) => { console.log("Error from get all price:", e); return; });
 
@@ -32,6 +35,34 @@ export const getFlowerById = async (id) => {
     })
 
     return await res();
+}
+
+
+
+// Actions with Cart 
+
+
+export const clearUserCart = async () => {
+    const userId = getUserId();
+    const userCartId = await getUserCartId(userId);
+    const apiBack = "http://127.0.0.3:3001/shoppingCart/" + userCartId;
+
+    await axios.patch(apiBack, {
+        flowers: []
+    },
+        {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    )
+}
+
+const getUserCartId = async (userId) => {
+    const userCartResponse = await getUserCart(userId);
+    const userCart = userCartResponse.data[0];
+    const userCartId = userCart._id;
+    return userCartId;
 }
 
 export const addFlowerToUserCart = async (userId, flowerId, count = 1) => {
@@ -99,9 +130,18 @@ const createUserCart = async (userId) => {
 
 
 
+// Actions with order
 
 
-export const getUserOrder = async (orderData) => {
+export const getUserOrder = async () => {
+    const userId = getUserId();
+    const apiBack = "http://127.0.0.3:3001/order/user/";
+    const response = await axios.get(apiBack + userId);
+    const userOrder = response.data;
+    return userOrder;
+}
+
+export const makeUserOrder = async (orderData) => {
     const userId = getUserId();
     const userCart = await getUserCart(userId);
     const userFlowers = userCart.data[0].flowers;
@@ -124,6 +164,29 @@ const createUserOrder = async (orderData) => {
 
 
 
+
+
+
+// Actions with User
+export const getUserById = async () => {
+    try {
+        const userId = getUserId();
+        const response = await axios.get(`http://127.0.0.4:3002/user/${userId}`);
+        const user = response.data;
+
+        return user;
+
+    }
+    catch (e) {
+        console.log("Some error from get user:", e)
+    }
+}
+
+const getUser = async (userId) => {
+    const user = await axios.get(`http://127.0.0.4:3002/user/${userId}`);
+    return user;
+}
+
 export const getUserId = () => {
     try {
         const token = localStorage.getItem('token');
@@ -132,11 +195,11 @@ export const getUserId = () => {
             console.log("User not find: ", userId);
             return null;
         }
-        console.log("Userid : ", userId);
+        // console.log("Userid : ", userId);
         return userId;
     }
     catch (e) {
-        console.log("Some error from get user:", e)
+        console.log("Some error from get userId:", e)
     }
 };
 
@@ -144,7 +207,7 @@ export const getUserId = () => {
 export const checkIfUserExistById = async (id) => {
     await axios.get(`http://127.0.0.4:3002/user/${id}`)
         .then(response => {
-            console.log("User: ", response.data)
+            // console.log("User: ", response.data)
             return true;
         })
         .catch(error => {
@@ -153,7 +216,7 @@ export const checkIfUserExistById = async (id) => {
         });
 };
 
-export const getUserIdFromToken = (token) => {
+const getUserIdFromToken = (token) => {
     try {
         const decodedToken = jwt.decode(token);
         return decodedToken ? decodedToken.sub : null;

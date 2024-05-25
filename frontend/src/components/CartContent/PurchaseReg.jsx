@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/style.css';
-import { getUserOrder } from '../UserActions';
+import { clearUserCart, makeUserOrder } from '../UserActions';
 
 export const PurchaseRegistration = () => {
     const [active_h, setActive] = useState({
@@ -34,7 +34,7 @@ export const PurchaseRegistration = () => {
     }
 
 
-
+// !! TODO: clear cart after order
     const handleChange = (e) => {
         setOrderInfo({ ...orderInfo, [e.target.name]: e.target.value });
     };
@@ -51,7 +51,8 @@ export const PurchaseRegistration = () => {
                 order_time: new Date(),
                 order_status: false
             }
-            getUserOrder(orderData);
+            makeUserOrder(orderData);
+            clearUserCart();
 
 
         } catch (error) {
@@ -124,8 +125,9 @@ export const PurchaseRegistration = () => {
                     onChange={handleChange}
 
                 />
-                <form className="" onSubmit={handleSubmit}>
 
+
+                <form className="" onSubmit={handleSubmit}>
                     <button className="black_btn" type="submit">Завершить покупку</button>
                 </form>
 

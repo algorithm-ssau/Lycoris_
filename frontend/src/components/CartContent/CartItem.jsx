@@ -5,7 +5,7 @@ import '../../styles/style.css';
 
 export const CartItem = (props) => {
     const [flower, setFlower] = useState();
-    const [loading, SetLoading] = useState();
+    // const [loading, SetLoading] = useState();
     const domain = "http://127.0.0.3:3001";
 
 
@@ -21,7 +21,7 @@ export const CartItem = (props) => {
 
     useEffect(() => {
         tempF1();
-        SetLoading();
+        // SetLoading();
     }
         , []);
     // console.log("FLOWER: ", flower);
