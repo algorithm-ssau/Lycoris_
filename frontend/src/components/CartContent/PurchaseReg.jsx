@@ -34,7 +34,6 @@ export const PurchaseRegistration = () => {
     }
 
 
-// !! TODO: clear cart after order
     const handleChange = (e) => {
         setOrderInfo({ ...orderInfo, [e.target.name]: e.target.value });
     };

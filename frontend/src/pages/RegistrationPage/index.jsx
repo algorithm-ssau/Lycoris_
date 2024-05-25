@@ -1,14 +1,14 @@
 import React from 'react';
 import { Footer, } from '../../components';
 import '../../styles/style.css';
-import { LoginContent } from '../../components/LoginPage/Login';
+import { RegistrationContent } from '../../components/RegistPage/Registration';
 
 
 export const RegistrationPage = () => {
     return (
         <>
             <>
-            <LoginContent/>
+            <RegistrationContent/>
             </>
             <Footer />
         </>);

@@ -131,7 +131,39 @@ const createUserCart = async (userId) => {
 
 
 // Actions with order
+export const createUser = async (user) => {
+    try {
+        user = { ...user, password_check: user.password };
+        const response = await axios.post('http://127.0.0.4:3002/register', user, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        // console.log(response.data);
+        return true;
+    } catch (error) {
+        console.error('Error:', error);
+        return false;
+    }
+}
 
+
+export const loginUser = async (user) => {
+    try {
+        const response = await axios.post('http://127.0.0.4:3002/login', user, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const { access_token } = response.data;
+        localStorage.setItem('token', access_token);
+        // console.log('JWT token:', access_token);
+        return true;
+    } catch (error) {
+        console.error('Error:', error);
+        return false;
+    }
+}
 
 export const getUserOrder = async () => {
     const userId = getUserId();
