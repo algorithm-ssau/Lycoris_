@@ -55,7 +55,7 @@ ul {
     list-style: none;
 }
 
-a, .Link {
+a {
     font-family: 'Gilroy-Medium';
     text-decoration: none;
     size: 16px;
@@ -139,13 +139,12 @@ button {
     grid-template-columns: 1fr 1fr;
 }
 
-.nav_list a, .nav_list .Link {
+.nav_list a {
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     outline: 1px solid black;
-    /* border-right: 1px solid black; */
     width: 100%;
     height: 70px;
 
@@ -166,7 +165,7 @@ div .nav_elem:nth-child(odd) {
 .welcome, .about_us, .advantages,  .contact_section{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 50vw;
+    grid-template-rows: 55.8vw;
     grid-template-areas: "title goods"
                          "something goods";
 }
@@ -273,7 +272,7 @@ div .nav_elem:nth-child(odd) {
     font-size: 38px;
 }
 
-.card a, .card .Link {
+.card a {
     
     font-size: 16px;
     font-family: 'Gilroy';
@@ -320,7 +319,7 @@ h4 {
     line-height: 140%;
 }
 
-.about_us_description a, .about_us_description .Link {
+.about_us_description a {
     margin-top: 3vw;
     transition: background-color 0.3s;
     
@@ -971,4 +970,130 @@ ul.card_list {
 .purchase_info_total_price {
     display: flex;
     margin-top: 24px;
+}
+
+
+/*СТРАНИЦА РЕГИСТРАЦИИ/АВТОРИЗАЦИИ ПОЛЬЗОВАТЕЛЯ*/
+.login, .profile {
+    background-image: url(../../public/images/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top: 1px solid black;
+}
+
+.blur {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px); 
+}
+
+.login_section, .profile_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    margin-top: 7em;
+    margin-bottom: 7em;
+    padding-bottom: 5em;
+    border: 1px solid black;  
+    background-color: white;
+}
+
+.login_section p {
+    margin: 0 4em;
+    text-align: center;
+}
+
+.login_title {
+    font-family: 'Gilroy-SemiBold';
+    font-size: 50px;
+}
+
+#user_email_input, #user_password_input, #user_nickname_input{
+    box-sizing: border-box;
+    border: 1px solid grey;
+    margin-top: 2em;
+    width: 60%;
+    font-size: 14px;
+}
+
+.login_section .black_btn, .profile_section .black_btn {
+    margin: 0;
+    margin-top: 1em;
+    padding: 0;
+    width: 100%;
+}
+
+.black_btn_form {
+    width: 60%;
+}
+
+.login_section .login_link {
+    margin-top: 2em;
+    width: 60%;
+    font-family: 'Gilroy-Medium';
+    text-decoration-skip-ink: none;
+    text-decoration: underline;
+    text-align: center;
+}
+
+/*СТРАНИЦА ПРОФИЛЯ ПОЛЬЗОВАТЕЛЯ*/
+
+.profile_title {
+    font-family: 'Gilroy-SemiBold';
+    font-size: 50px;
+    text-align: center;
+}
+
+.user_data {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-top: 4em;
+}
+
+.user_data div{
+    font-family: 'Gilroy-Medium';
+    font-size: 20px;
+}
+
+.profile_section h2 {
+    margin: 0;
+}
+
+.profile_section p {
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.order_title {
+    margin-top: 3em;
+}
+
+.order_history {
+    width: 60%;
+}
+
+.order_history img {
+    width: 80%;
+    height: 10vw;
+    object-fit: cover;
+}
+
+.order_history .purchase_info_item {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 0.5fr;
+    align-items: center;
+}
+
+.order_history .purchase_info_item_name {
+    font-family: 'Gilroy-Medium';
+    font-size: 18px;
+    
 }

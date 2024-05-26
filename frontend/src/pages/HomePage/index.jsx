@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Footer, SectionContacts, SectionAdvantages, SectionAU, SectionWelcome } from '../../components/';
+import axios from 'axios';
 
 
 

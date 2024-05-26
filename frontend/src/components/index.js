@@ -11,3 +11,9 @@ export * from "./HomePage/SectionWelcome";
 
 export * from "./CartContent/PurchaseReg";
 export * from "./CartContent/PurchaseInfo";
+
+
+
+
+// Logic
+export * from "./UserActions";

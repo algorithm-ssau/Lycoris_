@@ -33,14 +33,14 @@ export const SectionContacts = () => {
             </div>
             <div className="contact_links">
                 <img src="images/shop.jpg" alt="" />
-                <h2 className="follow_title">Подписывайтесь на нас</h2>
-                <div className="follow_links">
-                    <a href= ""><img src="images/icons/Instagram.svg" alt="" /></a>
-                    <a href= ""><img src="images/icons/Pinterest.svg" alt="" /></a>
-                    <a href= ""><img src="images/icons/Facebook.svg" alt="" /></a>
-                    <a href= ""><img src="images/icons/Twitter.svg" alt="" /></a>
-                    <a href= ""><img src="images/icons/Telegram.svg" alt="" /></a>
-                </div>
+                    {/* <h2 className="follow_title">Подписывайтесь на нас</h2>
+                    <div className="follow_links">
+                        <a href= ""><img src="images/icons/Instagram.svg" alt="" /></a>
+                        <a href= ""><img src="images/icons/Pinterest.svg" alt="" /></a>
+                        <a href= ""><img src="images/icons/Facebook.svg" alt="" /></a>
+                        <a href= ""><img src="images/icons/Twitter.svg" alt="" /></a>
+                        <a href= ""><img src="images/icons/Telegram.svg" alt="" /></a>
+                    </div> */}
 
             </div>
         </section>

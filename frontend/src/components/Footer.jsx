@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/style.css';
+import { Link } from 'react-router-dom';
+
 
 
 export const Footer = () => {
@@ -31,81 +33,81 @@ export const Footer = () => {
                     <h6>Электронный адрес</h6>
                     <div>flowers@mail.ru</div>
                 </div>
-                <div className="contact_point">
+                {/* <div className="contact_point">
                     <h5>Подписывайтесь на нас</h5>
                     <div className="follow_links">
-                        <a href="">
+                        <Link to="">
                             <img src="images/icons/Instagram.svg" alt="" />
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <img src="images/icons/Pinterest.svg" alt="" />
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <img src="images/icons/Facebook.svg" alt="" />
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <img src="images/icons/Twitter.svg" alt="" />
-                        </a>
-                        <a href="">
+                        </Link>
+                        <Link to="">
                             <img src="images/icons/Telegram.svg" alt="" />
-                        </a>
+                        </Link>
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className="store_links_block footer_container">
                 <h5>Ассортимент</h5>
                 <ul className="footer_nav_links">
                     <li>
-                        <a href="">Все товары</a>
+                        <Link to="/shop">Все товары</Link>
                     </li>
                     <li>
-                        <a href="">Свежие цветы</a>
+                        <Link to="/shop">Свежие цветы</Link>
                     </li>
                     <li>
-                        <a href="">Сухоцветы</a>
+                        <Link to="/shop">Сухоцветы</Link>
                     </li>
                     <li>
-                        <a href="">Живые растения</a>
+                        <Link to="/shop">Живые растения</Link>
+                    </li>
+                    {/* <li>
+                        <Link to="">Дизайнерские вазы</Link>
                     </li>
                     <li>
-                        <a href="">Дизайнерские вазы</a>
+                        <Link to="">Ароматические свечи</Link>
                     </li>
                     <li>
-                        <a href="">Ароматические свечи</a>
-                    </li>
-                    <li>
-                        <a href="">Диффузоры для ароматизаторов</a>
-                    </li>
+                        <Link to="">Диффузоры для ароматизаторов</Link>
+                    </li> */}
                 </ul>
-                <h5>Услуги</h5>
+                {/* <h5>Услуги</h5>
                 <ul className="footer_nav_links">
                     <li>
-                        <a href="">Подписка на доставку цветов</a>
+                        <Link to="">Подписка на доставку цветов</Link>
                     </li>
                     <li>
-                        <a href="">Свадебный &amp; Праздничный Декор</a>
+                        <Link to="">Свадебный &amp; Праздничный Декор</Link>
                     </li>
-                </ul>
+                </ul> */}
             </div>
             <div className="about_us_block footer_container">
                 <h5>О нас</h5>
                 <ul>
                     <li>
-                        <a href="">Наша история</a>
+                        <Link to="">Наша история</Link>
                     </li>
-                    <li>
-                        <a href="">Блог</a>
-                    </li>
+                    {/* <li>
+                        <Link to="">Блог</Link>
+                    </li> */}
                 </ul>
                 <ul>
                     <li>
-                        <a href="">Доставка &amp; возврат</a>
+                        <Link to="">Доставка &amp; возврат</Link>
                     </li>
                     <li>
-                        <a href="">Правила &amp; условия</a>
+                        <Link to="">Правила &amp; условия</Link>
                     </li>
                     <li>
-                        <a href="">Политика конфиденциальности</a>
+                        <Link to="">Политика конфиденциальности</Link>
                     </li>
                 </ul>
             </div>

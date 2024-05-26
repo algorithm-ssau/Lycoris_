@@ -1,4 +1,3 @@
-# WORKS. 
 version: '1.2'
 services: 
   j_frontend:
@@ -29,13 +28,12 @@ services:
     container_name: pythonApi
     volumes: 
       - ./pythonApi:/lycoris/pythonApi
-    command: flask --app flsite run --host 0.0.0.0 -p 3002
+    command: flask --app app run --host 0.0.0.0 -p 3002
     networks:
-      back:
+      - back
     ports:
       - '3002:3002'
 
 networks:
   back:
     driver: bridge
-      
