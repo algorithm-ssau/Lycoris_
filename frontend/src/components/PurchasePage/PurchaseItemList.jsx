@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const PurchaseItemList = () => {
-    // TODO: make connection with backend
     return (
         <div className="another_items_list">
             <a href="" className="another_item">

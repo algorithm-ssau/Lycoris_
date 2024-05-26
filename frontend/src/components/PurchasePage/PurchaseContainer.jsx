@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { addFlowerToUserCart, getUserCart, getUserId } from '../';
+import { Navigate } from 'react-router-dom';
+
 
 export const Purchase = () => {
-    // TODO: make connection with backend
     const params = useParams();
     const [flower, setFlower] = useState();
     const domain = "http://127.0.0.3:3001";
+    const [count, setCount] = useState(1);
+    const [nav, setNav] = useState(false);
 
 
     useEffect(() => {
@@ -23,13 +26,16 @@ export const Purchase = () => {
     const needFunc = () => {
         try {
             const userId = getUserId();
-            addFlowerToUserCart(userId, flower._id);
+            addFlowerToUserCart(userId, flower._id, count);
+            setNav(true);
         }
         catch (e) {
             console.log("Some error:", e)
         }
     };
 
+    if(nav)
+        return <Navigate to="/shop"/>;
 
 
 
@@ -44,39 +50,8 @@ export const Purchase = () => {
                 <h2>{flower?.name} - {flower?.price} р.</h2>
                 {/* <p>Large exceptional bouquet composed of a selection of David Austin roses, known for their beauty and subtle fragrance. The bouquet is accompanied by seasonal foliage which will enhance these sublime flowers even</p> */}
                 <p>{flower?.description_l}</p>
-                <div className="quantity purch_font">Количество <div><button className="white_btn">-</button><button className="item_counter white_btn">1</button><button className="white_btn">+</button></div></div>
-                <div className="purch_font">Идеально сочетается с:</div>
-                <div className="card_list">
-                    <button className="carousel_btn"><img src="/images/icons/left_carousel_arrow.svg" alt="" /></button>
-                    {/* <ul className="card_list">
-                        <li className="purchase_card">
-                            <img src="/images/glass_vase.jpg" alt="" />
-                            <h6 className="card_item_name">Стеклянная ваза</h6>
-                            <h6>15 р.</h6>
-                        </li>
-                        <li className="purchase_card">
-                            <img src="/images/hammershoi.jpg" alt="" />
-                            <h6 className="card_item_name">Ваза Hammershoi</h6>
-                            <h6>15 р.</h6>
-                        </li>
-                        <li className="purchase_card">
-                            <img src="/images/ceramic_vase.jpg" alt="" />
-                            <h6 className="card_item_name">Керамическая Ваза</h6>
-                            <h6>15 р.</h6>
-                        </li>
-                        <li className="purchase_card">
-                            <img src="/images/steel_vase.jpg" alt="" />
-                            <h6 className="card_item_name">Металлическая ваза</h6>
-                            <h6>15 р.</h6>
-                        </li>
-                        <li className="purchase_card">
-                            <img src="/images/bamboo.jpg" alt="" />
-                            <h6 className="card_item_name">Бамбуковая ваза</h6>
-                            <h6>300 р.</h6>
-                        </li>
-                    </ul> */}
-                    <button className="carousel_btn"><img src="/images/icons/right_carousel_arrow.svg" alt="" /></button>
-                </div>
+                <div className="quantity purch_font">Количество <div><button className="white_btn" onClick={() => { count - 1 < 1 ? setCount(1) : setCount(count-1)}}>-</button><button className="item_counter white_btn">{count}</button><button className="white_btn" onClick={() => setCount(count+1)}>+</button></div></div>
+
 
                 <button onClick={needFunc}>ДОБАВИТЬ В КОРЗИНУ</button>
             </div>

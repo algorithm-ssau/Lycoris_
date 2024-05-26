@@ -7,9 +7,7 @@ import { LoginPage } from './pages/LoginPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { RegistrationPage } from './pages/RegistrationPage';
 
-function App() {
-  
-  
+function App() {  
   return (
     <BrowserRouter>
       <HeaderNav />

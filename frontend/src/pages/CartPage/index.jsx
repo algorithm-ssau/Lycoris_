@@ -4,6 +4,7 @@ import '../../styles/style.css';
 
 
 export const CartPage = () => {
+    
     return (
         <>
             <main className='cart_main'>

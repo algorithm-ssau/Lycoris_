@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/style.css';
-import { createUser } from '../UserActions';
-import { Navigate } from 'react-router-dom';
+import { createUser, createUserCart } from '../UserActions';
+import { Link, Navigate } from 'react-router-dom';
 
 
-// TODO: переключение на профиль/логин при успешном входе
 export const RegistrationContent = () => {
-
+    const [reg, setReg] = useState(false);
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -22,9 +21,13 @@ export const RegistrationContent = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (createUser(user))
-            return <Navigate to="/login" />;
+        if (createUser(user)) {
+            setReg(true);
+        }
     };
+    if (reg) {
+        return <Navigate to="/login" />;
+    }
 
     return (
         <main className="login">
@@ -60,9 +63,10 @@ export const RegistrationContent = () => {
 
                     />
 
-                    <form className='black_btn' onSubmit={handleSubmit}>
+                    <form action="form" className="black_btn_form" onSubmit={handleSubmit}>
                         <button className="black_btn" type="submit">Завершить</button>
                     </form>
+                    <Link to="/login" className="login_link">Уже есть аккаунт</Link>
 
 
                 </div>

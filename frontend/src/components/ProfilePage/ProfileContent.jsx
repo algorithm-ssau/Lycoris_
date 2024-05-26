@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/style.css';
-import { getUserById, getUserOrder } from '../UserActions';
+import { exitFromAccaunt, getUserById, getUserId, getUserOrder } from '../UserActions';
 import { ProfileOrders } from './ProfileOrders';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+
 
 
 export const ProfileContent = () => {
+    const [exit, setExit] = useState(false);
     const [user, setUser] = useState();
     const [orderInfo, setOrderInfo] = useState([]);
     const getUserThere = async () => {
@@ -18,6 +22,10 @@ export const ProfileContent = () => {
     }
 
     useEffect(() => {
+        if (getUserId() == false){
+            setExit(true);
+            return;
+        }
         getUserThere();
         getUserOrderThere();
     }
@@ -26,13 +34,21 @@ export const ProfileContent = () => {
     console.log("Get user:", user);
     console.log("Get user order: ", orderInfo);
 
+    const handleSubmit = () =>{
+        exitFromAccaunt();
+        setExit(true);
+    }
+
+    if (exit){
+        console.log("EXIT");
+        return <Navigate to="/login"/>;
+    }
+
     return (
         <div className="blur">
             <div className="profile_section">
-                <h1 className="profile_title">
-                    Зравствуйте, <br />
-                    <span>{user?.name}</span>
-                </h1>
+                <h1 className="profile_title">Приветствуем!</h1>
+
                 <p>Здесь отображаются ваши данные и история заказов</p>
                 <div className="user_data">
                     <div>
@@ -61,13 +77,16 @@ export const ProfileContent = () => {
 
                 <div className="order_history">
                     {orderInfo != [] && orderInfo?.map((orderth, i) => {
-                        return <ProfileOrders order={orderth} num={i}/>;
+                        return <ProfileOrders order={orderth} num={i} />;
                     })
                     }
                 </div>
 
 
-                <button className="black_btn">Завершить</button>
+                <form action="" className="black_btn_form" onSubmit={handleSubmit}>
+                    <button className="black_btn" type="submit">Выйти из аккаунта</button>
+                </form>
+
             </div>
         </div>
 

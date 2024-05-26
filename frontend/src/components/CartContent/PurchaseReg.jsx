@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../../styles/style.css';
 import { clearUserCart, makeUserOrder } from '../UserActions';
+import { Navigate } from 'react-router-dom';
 
 export const PurchaseRegistration = () => {
     const [active_h, setActive] = useState({
@@ -13,6 +14,7 @@ export const PurchaseRegistration = () => {
         delivery: " hidden",
         payment: " hidden",
     });
+    const [login, setLogin] = useState(false);
 
     const [orderInfo, setOrderInfo] = useState({
         name: "",
@@ -52,13 +54,16 @@ export const PurchaseRegistration = () => {
             }
             makeUserOrder(orderData);
             clearUserCart();
+            
 
+            setLogin(true);
 
         } catch (error) {
             console.error('Error:', error);
         }
     };
-
+    if (login)
+        return <Navigate to="/profile" />;
 
     return (
         <div className="purchase_registration">

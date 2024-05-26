@@ -1025,7 +1025,20 @@ ul.card_list {
     margin: 0;
     margin-top: 1em;
     padding: 0;
+    width: 100%;
+}
+
+.black_btn_form {
     width: 60%;
+}
+
+.login_section .login_link {
+    margin-top: 2em;
+    width: 60%;
+    font-family: 'Gilroy-Medium';
+    text-decoration-skip-ink: none;
+    text-decoration: underline;
+    text-align: center;
 }
 
 
@@ -1069,7 +1082,8 @@ ul.card_list {
 
 .order_history img {
     width: 80%;
-    height: auto;
+    height: 10vw;
+    object-fit: cover;
 }
 
 .order_history .purchase_info_item {
@@ -1081,6 +1095,5 @@ ul.card_list {
 
 .order_history .purchase_info_item_name {
     font-family: 'Gilroy-Medium';
-    font-size: 18px;
-    
+    font-size: 18px;   
 }

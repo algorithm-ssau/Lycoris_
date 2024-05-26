@@ -14,8 +14,24 @@ export const HeaderNav = () => {
     const [loginButton, setLogin] = useState("Войти");
     const [loginLink, setLoginLink] = useState("/login");
 
+    const [cartButton, setCart] = useState({
+        'pointer-events': 'none',
+        'opacity': 0.5
+    });
+
+    const setParametrs = () => {
+        if (getUserId()) {
+            setLogin("Профиль");
+            setLoginLink("/profile");
+            setCart({
+                'pointer-events': 'auto',
+                'opacity': 1
+            });
+        }
+    }
+
     const location = useLocation();
-    useEffect(() => { 
+    useEffect(() => {
         if (location.pathname == "/") {
             setFirst("Магазин");
             setFirstLink("/shop");
@@ -25,10 +41,7 @@ export const HeaderNav = () => {
             setFirstLink("/");
         }
 
-        if( getUserId() != null){
-            setLogin("Профиль");
-            setLoginLink("/profile");
-        }
+        setParametrs();
 
     }, []);
 
@@ -43,7 +56,9 @@ export const HeaderNav = () => {
             setFirstLink("/");
         }
 
+        setParametrs();
     }
+
     return (
         <header className="header">
             <nav className="header__nav">
@@ -55,7 +70,7 @@ export const HeaderNav = () => {
                     <div></div>
                     <div>
                         <li className="nav_elem" onClick={mainOrShop}><Link to={loginLink}>{loginButton}</Link></li>
-                        <li className="nav_elem" onClick={mainOrShop}><Link to={"/cart"}>Корзина </Link></li>
+                        <li className="nav_elem" onClick={mainOrShop}><Link to={"/cart"} style={cartButton}>Корзина </Link></li>
                     </div>
                 </ul>
             </nav>

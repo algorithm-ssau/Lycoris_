@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import '../../styles/style.css';
 import { loginUser } from '../UserActions';
 import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-// TODO: переключение на профиль при успешном входе
+
 export const LoginContent = () => {
-
+    const [login, setLogin] = useState(false);
+    const [loginError, setLoginError] = useState({
+        state: false
+    });
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -15,13 +19,23 @@ export const LoginContent = () => {
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
-
+    // ! почему-то два раза вызывается алерт при ошибке ввода логина/пароля
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if( loginUser(user) )
-            return <Navigate to="/profile" />;
+        setLogin(await loginUser(user));
+
+        if (login == false) {
+            setLoginError({ state: true });
+        }
 
     };
+    if (login)
+        return <Navigate to="/profile" />;
+
+    if (loginError.state) {
+        setLoginError({ state: false });
+        alert("Вы ввели что-то не то. Попробуйте снова.");
+    }
 
     return (
         <main className="login">
@@ -48,10 +62,13 @@ export const LoginContent = () => {
                         onChange={handleChange}
 
                     />
-                    <form className='black_btn' onSubmit={handleSubmit}>
-                        <button className="black_btn" type='submit'>Войти</button>
 
+                    <form action="form" className="black_btn_form" onSubmit={handleSubmit}>
+                        <button className="black_btn" type='submit'>Войти</button>
                     </form>
+                    <Link to="/registration" className="login_link">Создать аккаунт</Link>
+
+
                 </div>
             </div>
         </main>

@@ -165,7 +165,7 @@ div .nav_elem:nth-child(odd) {
 .welcome, .about_us, .advantages,  .contact_section{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 50vw;
+    grid-template-rows: 55.8vw;
     grid-template-areas: "title goods"
                          "something goods";
 }
@@ -1025,9 +1025,21 @@ ul.card_list {
     margin: 0;
     margin-top: 1em;
     padding: 0;
+    width: 100%;
+}
+
+.black_btn_form {
     width: 60%;
 }
 
+.login_section .login_link {
+    margin-top: 2em;
+    width: 60%;
+    font-family: 'Gilroy-Medium';
+    text-decoration-skip-ink: none;
+    text-decoration: underline;
+    text-align: center;
+}
 
 /*СТРАНИЦА ПРОФИЛЯ ПОЛЬЗОВАТЕЛЯ*/
 
@@ -1069,7 +1081,8 @@ ul.card_list {
 
 .order_history img {
     width: 80%;
-    height: auto;
+    height: 10vw;
+    object-fit: cover;
 }
 
 .order_history .purchase_info_item {

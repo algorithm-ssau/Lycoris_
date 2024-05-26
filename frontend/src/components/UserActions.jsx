@@ -66,15 +66,33 @@ const getUserCartId = async (userId) => {
 }
 
 export const addFlowerToUserCart = async (userId, flowerId, count = 1) => {
-    const userCart = await getUserCart(userId).catch((e) => { createUserCart(userId); return getUserCart(userId); });
-    const cartData = userCart.data[0];
-    // check if flower already in cart
-    if (cartData.flowers.find(flower => flower.flower === flowerId)) {
-        return null;
-    }
-    const id = cartData._id;
+    // let userCart = await getUserCart(userId).catch((e) => { createUserCart(userId); return getUserCart(userId); });
+    await getUserCart(userId).then(async (response) => {
+        const cartData = response.data[0];
+        if (cartData == undefined) {
+            throw "lolus";
+        }
+        console.log("CARTDATA: ", cartData);
+        if (cartData.flowers.find(flower => flower.flower === flowerId)) {
+            return null;
+        }
+        const id = await cartData._id;
 
-    addFlowerToCart(id, flowerId, count);
+        await addFlowerToCart(id, flowerId, count);
+    }).catch((e) => {
+        createUserCart(userId).then( async () => {
+            await getUserCart(userId).then(async (response) => {
+                const cartData = response.data[0];
+                console.log("CARTDATA: ", cartData);
+                if (cartData.flowers.find(flower => flower.flower === flowerId)) {
+                    return null;
+                }
+                const id = await cartData._id;
+
+                await addFlowerToCart(id, flowerId, count);
+            })
+        })
+    })
 }
 
 export const addFlowerToCart = async (cartId, flowerId, count) => {
@@ -104,7 +122,6 @@ export const getUserCart = async (userId) => {
         const response = axios.get(apiBack)
             .catch((e) => { reject(console.log("err from get: ", e)) });
         resolve(response);
-
     })
 
     return await res();
@@ -112,13 +129,13 @@ export const getUserCart = async (userId) => {
 
 };
 
-const createUserCart = async (userId) => {
+export const createUserCart = async (userId) => {
     console.log("Create  cart");
 
     const apiBack = "http://127.0.0.3:3001/shoppingCart";
     axios.post(apiBack, {
-        user: userId
-        // flowers: []
+        user: userId,
+        flowers: []
     }, {
         headers: {
             'Content-Type': 'application/json'
@@ -148,29 +165,19 @@ export const createUser = async (user) => {
 }
 
 
-export const loginUser = async (user) => {
+
+// for frieren
+export const getUserOrder = async () => {
     try {
-        const response = await axios.post('http://127.0.0.4:3002/login', user, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const { access_token } = response.data;
-        localStorage.setItem('token', access_token);
-        // console.log('JWT token:', access_token);
-        return true;
-    } catch (error) {
-        console.error('Error:', error);
+        const userId = getUserId();
+        const apiBack = "http://127.0.0.3:3001/order/user/";
+        const response = await axios.get(apiBack + userId);
+        const userOrder = response.data;
+        return userOrder;
+    } catch (e) {
+        console.log("Error with user order:", e);
         return false;
     }
-}
-
-export const getUserOrder = async () => {
-    const userId = getUserId();
-    const apiBack = "http://127.0.0.3:3001/order/user/";
-    const response = await axios.get(apiBack + userId);
-    const userOrder = response.data;
-    return userOrder;
 }
 
 export const makeUserOrder = async (orderData) => {
@@ -200,9 +207,32 @@ const createUserOrder = async (orderData) => {
 
 
 // Actions with User
+export const exitFromAccaunt = () => {
+    localStorage.clear();
+}
+
+export const loginUser = async (user) => {
+    try {
+        const response = await axios.post('http://127.0.0.4:3002/login', user, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        console.log("RESPPSPS:", response);
+        const { access_token } = response.data;
+        localStorage.setItem('token', access_token);
+        console.log('JWT token:', access_token);
+        return true;
+    } catch (error) {
+        console.error('Error login:', error);
+        return false;
+    }
+}
+
 export const getUserById = async () => {
     try {
         const userId = getUserId();
+        if (userId == false) throw "User doesn't exist";
         const response = await axios.get(`http://127.0.0.4:3002/user/${userId}`);
         const user = response.data;
 
@@ -210,7 +240,8 @@ export const getUserById = async () => {
 
     }
     catch (e) {
-        console.log("Some error from get user:", e)
+        console.log("Some error from get user by id:", e);
+        return false;
     }
 }
 
@@ -223,15 +254,16 @@ export const getUserId = () => {
     try {
         const token = localStorage.getItem('token');
         const userId = getUserIdFromToken(token);
-        if (checkIfUserExistById(userId) == null) {
+        if (userId == null || checkIfUserExistById(userId) == null) {
             console.log("User not find: ", userId);
-            return null;
+            return false;
         }
         // console.log("Userid : ", userId);
         return userId;
     }
     catch (e) {
         console.log("Some error from get userId:", e)
+        return false;
     }
 };
 
@@ -251,7 +283,7 @@ export const checkIfUserExistById = async (id) => {
 const getUserIdFromToken = (token) => {
     try {
         const decodedToken = jwt.decode(token);
-        return decodedToken ? decodedToken.sub : null;
+        return decodedToken != null ? decodedToken.sub : null;
     } catch (error) {
         console.error('Error decoding token:', error);
         return null;
