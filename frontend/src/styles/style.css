@@ -104,7 +104,6 @@ button {
     margin-right: 80px;
     color: white;
     background-color: black;
-
     width: auto;
     height: 56px;
     font-family: 'Gilroy-Medium';
@@ -112,6 +111,11 @@ button {
     font-weight: 90;
     text-transform: uppercase;
     border: none;
+    cursor: pointer;
+}
+
+button:active {
+    opacity: 0.7;
 }
 
 .btn {
@@ -165,7 +169,6 @@ div .nav_elem:nth-child(odd) {
 .welcome, .about_us, .advantages,  .contact_section{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 55.8vw;
     grid-template-areas: "title goods"
                          "something goods";
 }
@@ -180,21 +183,19 @@ div .nav_elem:nth-child(odd) {
     border: 1px solid black;
     border-left: none;
     border-right: none;
-    row-gap: 24px;
-
 }
 
 .title {
     grid-column: span 2;
     width: auto;
-    height: 20.95vw;
     border-bottom: 1px solid black;
+    margin-bottom: 2vw;
     
 }
 
 .title h1 {
     font-size: 67px;
-    font-family: 'Gilroy';
+    font-family: 'Gilroy-Medium';
     font-weight: 600;
     margin: 0;
 }
@@ -202,17 +203,20 @@ div .nav_elem:nth-child(odd) {
 .title p {
     margin-top: 32px;
     font-size: 18px;
-    font-family: 'Gilroy';
+    font-family: 'Gilroy-Regular';
     width: auto;
 }
 
 .title_hero {
     border-right: 1px solid black;
-    padding-right: 24px;
+    
+    /* padding-right: 24px; */
+    padding-right: 2vw;
 }
 
 .title_hero_img {
     width: 100%;
+    
 }
 
 .slogan {
@@ -220,7 +224,7 @@ div .nav_elem:nth-child(odd) {
     margin-bottom: 0;
     padding-left: 24px;
     width: auto;
-    font-family: 'Gilroy';
+    font-family: 'Gilroy-Regular';
     font-weight: 400;
     font-size: 14px;
 }
@@ -231,6 +235,7 @@ div .nav_elem:nth-child(odd) {
     grid-template-columns: repeat(2, 1fr);
     grid-area: goods;
     border: 1px solid black;
+    box-sizing: border-box;
     border-bottom: none;
     border-right: none;
 }
@@ -248,7 +253,10 @@ div .nav_elem:nth-child(odd) {
 
 .welcome_goods_types div:nth-child(odd) {
     border-right: 1px solid black;
+    box-sizing: border-box;
 }
+
+
 
 
 .welcome_something {
@@ -257,6 +265,7 @@ div .nav_elem:nth-child(odd) {
     align-items: center;
     grid-area: something;
     border-bottom: 1px solid black;
+    box-sizing: border-box;
     font-family: 'Gilroy-Medium';
     font-size: 65px;
 }
@@ -264,6 +273,7 @@ div .nav_elem:nth-child(odd) {
 .card {
     display: flex;
     flex-direction: column;
+    text-align: center;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
@@ -273,9 +283,8 @@ div .nav_elem:nth-child(odd) {
 }
 
 .card a {
-    
     font-size: 16px;
-    font-family: 'Gilroy';
+    font-family: 'Gilroy-Medium';
     font-weight: 600;
 }
 
@@ -295,7 +304,7 @@ div .nav_elem:nth-child(odd) {
 h4 {
     display: inline-block;
     height: 100px;
-    font-family: 'Gilroy';
+    font-family: 'Gilroy-Medium';
     font-weight: 600;
     font-size: 50px;
     margin-top: 80px;
@@ -514,6 +523,7 @@ input {
     grid-template-columns: repeat(4, minmax(200px, 1fr));
     border-top: 1px solid black;
 }
+
 
 .footer_container {
     border-left: 1px solid black;
@@ -1026,6 +1036,10 @@ ul.card_list {
     margin-top: 1em;
     padding: 0;
     width: 100%;
+}
+
+.black_btn:active {
+    opacity: 0.7;
 }
 
 .black_btn_form {
