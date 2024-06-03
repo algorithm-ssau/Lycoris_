@@ -146,6 +146,7 @@ button:active {
 .nav_list a {
     display: flex;
     align-items: center;
+    text-align: center;
     justify-content: center;
     box-sizing: border-box;
     outline: 1px solid black;
@@ -169,7 +170,9 @@ div .nav_elem:nth-child(odd) {
 .welcome, .about_us, .advantages,  .contact_section{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: "title goods"
+                         "title goods"
                          "something goods";
 }
 
@@ -216,6 +219,8 @@ div .nav_elem:nth-child(odd) {
 
 .title_hero_img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     
 }
 
@@ -268,7 +273,11 @@ div .nav_elem:nth-child(odd) {
     box-sizing: border-box;
     font-family: 'Gilroy-Medium';
     font-size: 65px;
+    height: auto;
+    
 }
+
+
 
 .card {
     display: flex;
@@ -610,7 +619,9 @@ input {
 
 .flower_item img {
     width: 80%;
+    height: 100%;
     padding-top: 1.5em;
+    object-fit: cover;
 }
 
 .flower_item .item_title {
@@ -638,7 +649,8 @@ input {
 
 .purchase_content img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .purchase_content > div, .purchase_content > img {
@@ -941,7 +953,9 @@ ul.card_list {
 
 .purchase_info_item img{
     max-width: 160px;
-    height: auto;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     border: 1px solid black;
     margin-right: 14px;
 }
@@ -1083,6 +1097,7 @@ ul.card_list {
     font-size: 18px;
     margin-left: 10px;
     margin-right: 10px;
+    text-align: center;
 }
 
 .order_title {
@@ -1090,20 +1105,39 @@ ul.card_list {
 }
 
 .order_history {
-    width: 60%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.order_history > p {
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.order_history > div {
+    text-align: center;
 }
 
 .order_history img {
-    width: 80%;
-    height: 10vw;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 150px;
+    min-width: 100px;
     object-fit: cover;
 }
 
 .order_history .purchase_info_item {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: 1fr 0.5fr 0.5fr;
+    grid-template-columns: 1fr 1fr 0.5fr;
     align-items: center;
+    border-bottom: 1px dashed black;
+}
+
+.order_history .purchase_info_item:last-child {
+    border-bottom: none;
 }
 
 .order_history .purchase_info_item_name {
